@@ -1,0 +1,176 @@
+/* ═══════════════════════════════════════════════════════════
+   CLEAN AGENCY FOOTER STYLES (Digital Solutions Tokens)
+═══════════════════════════════════════════════════════════ */
+
+/* Main Footer Container */
+.vx-agency-footer {
+  background: var(--vx-black-soft);
+  color: #ffffff;
+  padding: 72px 24px 40px;
+  font-family: inherit;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.vx-agency-footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* 5 Column Grid */
+.vx-agency-footer-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr 1fr 1fr;
+  gap: 40px clamp(20px, 3vw, 44px);
+  margin-bottom: 64px;
+}
+
+@media (max-width: 1200px) {
+  .vx-agency-footer-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+  }
+}
+
+@media (max-width: 840px) {
+  .vx-agency-footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .vx-agency-footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Column 1: Contact Us */
+.vx-footer-col-contact {
+  display: flex;
+  flex-direction: column;
+}
+
+.vx-footer-col-contact .lead-text {
+  font-size: 19px;
+  color: var(--vx-sky-bright);
+  margin: 0 0 2px;
+  font-weight: 500;
+}
+
+.vx-footer-col-contact .main-text {
+  font-size: 32px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
+}
+
+.vx-footer-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.vx-footer-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #cbd5e1;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.vx-footer-contact-link:hover {
+  color: var(--vx-sky-bright);
+  transform: translateX(3px);
+}
+
+/* Socials */
+.vx-footer-social-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.vx-footer-social-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.vx-footer-social-btn:hover {
+  background: var(--vx-blue);
+  color: #ffffff;
+  border-color: var(--vx-blue-bright);
+  transform: translateY(-2px);
+}
+
+/* Nav Columns */
+.vx-footer-col h4 {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0 0 20px;
+}
+
+.vx-footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vx-footer-col li a {
+  font-size: 14px;
+  color: #94a3b8;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.15s ease;
+  display: inline-block;
+}
+
+.vx-footer-col li a:hover {
+  color: var(--vx-sky-bright);
+  transform: translateX(3px);
+}
+
+/* Copyright Bottom Row */
+.vx-footer-copyright-bar {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.vx-footer-legal-links {
+  display: flex;
+  gap: 20px;
+}
+
+.vx-footer-legal-links a {
+  color: #64748b;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.vx-footer-legal-links a:hover {
+  color: #94a3b8;
+}

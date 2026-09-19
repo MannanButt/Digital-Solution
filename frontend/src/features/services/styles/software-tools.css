@@ -1,0 +1,434 @@
+.ds-store-page { min-height: 100vh; overflow: clip; background: #f4f7fb; color: #12233a; }
+.ds-store-shell { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
+.ds-store-hero { position: relative; background: #151015; color: #fff; }
+.ds-store-hero::before, .ds-store-hero::after { display: none; }
+.ds-store-sale-carousel { position: relative; min-height: 650px; overflow: hidden; }
+.ds-store-sale-slide { position: absolute; inset: 0; display: grid; align-items: stretch; opacity: 0; pointer-events: none; transition: opacity 650ms ease; }
+.ds-store-sale-slide.is-active { z-index: 1; opacity: 1; pointer-events: auto; }
+.ds-store-sale-image, .ds-store-sale-overlay { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ds-store-sale-image { object-fit: cover; object-position: center; transform: scale(1.04); transition: transform 6s ease; }
+.ds-store-sale-slide.is-active .ds-store-sale-image { transform: scale(1); }
+.ds-store-sale-overlay { background: linear-gradient(90deg, rgba(8, 7, 9, .97) 0%, rgba(8, 7, 9, .88) 34%, rgba(8, 7, 9, .32) 69%, rgba(8, 7, 9, .12) 100%), linear-gradient(0deg, rgba(6, 5, 7, .55), transparent 45%); }
+.ds-store-sale-slide--forest .ds-store-sale-overlay { background: linear-gradient(90deg, rgba(6, 15, 11, .97) 0%, rgba(6, 15, 11, .87) 35%, rgba(6, 15, 11, .32) 69%, rgba(6, 15, 11, .08) 100%), linear-gradient(0deg, rgba(4, 13, 9, .56), transparent 47%); }
+.ds-store-sale-slide--ember .ds-store-sale-overlay { background: linear-gradient(90deg, rgba(20, 8, 8, .97) 0%, rgba(20, 8, 8, .87) 35%, rgba(20, 8, 8, .34) 69%, rgba(20, 8, 8, .08) 100%), linear-gradient(0deg, rgba(13, 4, 4, .56), transparent 47%); }
+.ds-store-sale-content { position: relative; display: flex; align-items: center; min-height: 650px; padding-top: 94px; padding-bottom: 74px; }
+.ds-store-sale-copy { max-width: 640px; }
+.ds-store-sale-copy .ds-store-eyebrow { color: #e4c895; }
+.ds-store-sale-slide--forest .ds-store-eyebrow { color: #b8e5aa; }
+.ds-store-sale-slide--ember .ds-store-eyebrow { color: #f4b28d; }
+.ds-store-sale-copy h1 { max-width: 660px; margin-top: 18px; color: #fff; font-size: clamp(47px, 6vw, 78px); line-height: .93; }
+.ds-store-sale-copy > p:not(.ds-store-eyebrow) { max-width: 570px; margin-top: 21px; color: rgba(255,255,255,.8); font-size: 16px; line-height: 1.68; }
+.ds-store-sale-price { display: flex; align-items: end; gap: 9px; margin-top: 25px; }
+.ds-store-sale-price span { display: grid; gap: 4px; color: #dfccb1; font-size: 11px; font-weight: 750; }
+.ds-store-sale-price s { text-decoration-color: #dd7670; }
+.ds-store-sale-price em { color: #d7a850; font-size: 9px; font-style: normal; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
+.ds-store-sale-price strong { color: #fff; font-family: var(--font-nunito-sans), Arial, sans-serif; font-size: clamp(35px, 4vw, 48px); letter-spacing: -.055em; line-height: .9; }
+.ds-store-sale-price small { margin-bottom: 4px; color: #d9c2a5; font-size: 11px; font-weight: 700; }
+.ds-store-sale-slide--forest .ds-store-sale-price em { color: #a9d99a; }
+.ds-store-sale-slide--ember .ds-store-sale-price em { color: #f09c78; }
+.ds-store-sale-slide .ds-store-button--primary { background: #d8a44d; color: #1b1007; box-shadow: 0 12px 25px rgba(0,0,0,.26); }
+.ds-store-sale-slide .ds-store-button--primary:hover { background: #edbd68; }
+.ds-store-sale-slide--forest .ds-store-button--primary { background: #a3c990; color: #07130a; }
+.ds-store-sale-slide--forest .ds-store-button--primary:hover { background: #badca8; }
+.ds-store-sale-slide--ember .ds-store-button--primary { background: #df8b65; color: #240c06; }
+.ds-store-sale-slide--ember .ds-store-button--primary:hover { background: #f0a682; }
+.ds-store-sale-slide .ds-store-button--quiet { border-color: rgba(255,255,255,.25); background: rgba(9,7,8,.22); }
+.ds-store-sale-controls { position: absolute; z-index: 2; bottom: 34px; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; color: rgba(255,255,255,.7); font-family: var(--font-geist-mono), monospace; font-size: 10px; letter-spacing: .1em; }
+.ds-store-sale-dots { display: flex; align-items: center; gap: 8px; }
+.ds-store-sale-dots button { width: 26px; height: 3px; padding: 0; border: 0; border-radius: 99px; background: rgba(255,255,255,.32); cursor: pointer; transition: width 200ms ease, background 200ms ease; }
+.ds-store-sale-dots button.is-active { width: 46px; background: #fff; }
+.ds-store-hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(330px, .7fr); gap: 72px; align-items: center; }
+.ds-store-eyebrow { display: inline-flex; align-items: center; gap: 10px; color: #79c7ff; font-size: 11px; font-weight: 850; letter-spacing: .16em; text-transform: uppercase; }
+.ds-store-eyebrow > span { width: 26px; height: 2px; background: currentColor; }
+.ds-store-eyebrow--dark { color: #147bc8; }
+.ds-store-hero h1 { max-width: 750px; margin-top: 20px; color: #fff; font-family: var(--font-nunito-sans), Arial, sans-serif; font-size: clamp(51px, 6.4vw, 84px); font-weight: 850; letter-spacing: -.068em; line-height: .91; }
+.ds-store-hero h1 em { color: #5dbaff; font-style: normal; }
+.ds-store-hero-copy > p:not(.ds-store-eyebrow) { max-width: 630px; margin-top: 26px; color: #c5d7eb; font-size: 18px; line-height: 1.72; }
+.ds-store-hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.ds-store-button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 0 20px; border: 1px solid transparent; border-radius: 14px; font-size: 13px; font-weight: 850; transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease; }
+.ds-store-button:hover { transform: translateY(-2px); }
+.ds-store-button--primary { background: #299aff; color: #fff; box-shadow: 0 12px 26px rgba(25, 148, 255, .27); }
+.ds-store-button--primary:hover { background: #51adff; box-shadow: 0 16px 34px rgba(25, 148, 255, .34); }
+.ds-store-button--quiet { border-color: rgba(167, 213, 255, .36); background: rgba(255, 255, 255, .07); color: #ecf7ff; }
+.ds-store-button--quiet:hover { background: rgba(70, 164, 255, .17); }
+.ds-store-trust-row { display: flex; flex-wrap: wrap; gap: 12px 20px; margin-top: 38px; color: #b4cee4; font-size: 12px; font-weight: 700; }
+.ds-store-trust-row span { display: inline-flex; align-items: center; gap: 6px; }
+.ds-store-trust-row svg { color: #61c2ff; }
+.ds-store-hero-card { position: relative; min-height: 380px; overflow: hidden; padding: 28px; border: 1px solid rgba(151, 210, 255, .28); border-radius: 28px; background: linear-gradient(145deg, rgba(27, 103, 173, .72), rgba(7, 35, 74, .9)); box-shadow: inset 0 1px 0 rgba(255,255,255,.13), 0 26px 60px rgba(0,0,0,.25); backdrop-filter: blur(15px); }
+.ds-store-orb { position: absolute; z-index: -1; border-radius: 50%; filter: blur(2px); }
+.ds-store-orb--one { top: -90px; right: -72px; width: 250px; height: 250px; background: rgba(83, 195, 255, .45); }
+.ds-store-orb--two { bottom: -120px; left: -94px; width: 250px; height: 250px; border: 1px solid rgba(157, 223, 255, .4); }
+.ds-store-feature-top { display: flex; align-items: center; justify-content: space-between; color: #dceeff; font-size: 11px; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+.ds-store-pulse { display: inline-flex; align-items: center; gap: 6px; padding: 6px 9px; border-radius: 999px; background: rgba(124, 224, 176, .14); color: #a4f3c5; letter-spacing: .06em; }
+.ds-store-pulse::before { width: 6px; height: 6px; border-radius: 50%; background: #86efac; box-shadow: 0 0 0 4px rgba(134,239,172,.12); content: ""; }
+.ds-store-brand-cloud { display: flex; align-items: center; gap: 12px; margin: 64px 0 30px; }
+.ds-store-brand-cloud span { display: grid; width: 47px; height: 47px; place-items: center; border: 1px solid rgba(220, 242, 255, .2); border-radius: 15px; background: rgba(255,255,255,.11); box-shadow: inset 0 1px 0 rgba(255,255,255,.12); }
+.ds-store-brand-cloud img { width: 25px; height: 25px; object-fit: contain; }
+.ds-store-feature-copy p { color: #c5e4fa; font-size: 13px; font-weight: 700; }
+.ds-store-feature-copy strong { display: block; max-width: 300px; margin-top: 7px; color: #fff; font-family: var(--font-nunito-sans), Arial, sans-serif; font-size: 25px; letter-spacing: -.045em; line-height: 1.04; }
+.ds-store-feature-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 32px; color: #8fd3ff; font-size: 12px; font-weight: 850; }
+.ds-store-catalog { padding: 132px 0 110px; }
+.ds-store-catalog-heading { display: flex; justify-content: space-between; align-items: end; gap: 40px; }
+.ds-store-catalog-heading h2 { margin-top: 15px; color: #102744; font-family: var(--font-nunito-sans), Arial, sans-serif; font-size: clamp(38px, 5vw, 60px); font-weight: 850; letter-spacing: -.064em; line-height: .95; }
+.ds-store-catalog-heading > p { max-width: 400px; color: #63778e; font-size: 14px; line-height: 1.7; }
+.ds-store-filter-bar { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 42px; padding: 11px; border: 1px solid rgba(167, 191, 214, .66); border-radius: 19px; background: rgba(255,255,255,.72); box-shadow: 0 14px 34px rgba(24, 59, 96, .08); backdrop-filter: blur(16px); }
+.ds-store-search { display: flex; flex: 1 1 240px; align-items: center; gap: 11px; min-height: 46px; padding: 0 14px; border-radius: 12px; background: #f2f7fc; color: #6b829b; }
+.ds-store-search input { width: 100%; border: 0; outline: 0; background: transparent; color: #18344f; font: inherit; font-size: 14px; }
+.ds-store-search input::placeholder { color: #8295a8; }
+.ds-store-category-tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.ds-store-category-tabs button { min-height: 38px; padding: 0 12px; border: 0; border-radius: 10px; background: transparent; color: #577089; font: inherit; font-size: 12px; font-weight: 800; cursor: pointer; transition: color 180ms ease, background 180ms ease; }
+.ds-store-category-tabs button:hover { color: #0a76c2; }
+.ds-store-category-tabs button.is-active { background: #0f82d6; color: #fff; box-shadow: 0 8px 16px rgba(17,127,214,.18); }
+.ds-store-results { display: flex; justify-content: space-between; gap: 16px; margin: 22px 0; color: #718398; font-size: 12px; }
+.ds-store-results span:first-child { color: #234766; font-weight: 800; }
+.ds-store-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.ds-store-product-card { display: flex; flex-direction: column; min-height: 405px; padding: 22px; border: 1px solid #d8e4ee; border-radius: 20px; background: #fff; box-shadow: 0 12px 28px rgba(28, 58, 92, .055); transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
+.ds-store-product-card:hover { border-color: #a5d5fa; box-shadow: 0 18px 36px rgba(28, 85, 136, .12); transform: translateY(-4px); }
+.ds-store-product-head { display: flex; align-items: start; justify-content: space-between; gap: 12px; }
+.ds-store-logo { display: grid; width: 52px; height: 52px; flex: 0 0 auto; place-items: center; border: 1px solid #e0e9f1; border-radius: 16px; background: linear-gradient(145deg, #f9fcff, #edf4fa); }
+.ds-store-logo img { width: 29px; height: 29px; object-fit: contain; }
+.ds-store-product-head > div:last-child { display: grid; justify-items: end; gap: 6px; }
+.ds-store-badge, .ds-store-category-label { display: inline-flex; padding: 5px 8px; border-radius: 7px; font-size: 9px; font-weight: 850; letter-spacing: .07em; text-transform: uppercase; }
+.ds-store-badge { background: #eff9f3; color: #13885d; }
+.ds-store-category-label { background: #eff6fc; color: #51738f; }
+.ds-store-product-copy { margin-top: 23px; }
+.ds-store-product-copy h3 { color: #102a46; font-family: var(--font-nunito-sans), Arial, sans-serif; font-size: 23px; font-weight: 850; letter-spacing: -.04em; }
+.ds-store-plan { margin-top: 4px; color: #147ec9 !important; font-size: 11px !important; font-weight: 800; }
+.ds-store-product-copy > p:last-child { min-height: 44px; margin-top: 12px; color: #687d92; font-size: 12px; line-height: 1.65; }
+.ds-store-product-card ul { display: grid; gap: 7px; margin-top: 17px; padding-top: 17px; border-top: 1px solid #e7eef4; color: #60778c; font-size: 11px; }
+.ds-store-product-card li { display: flex; align-items: center; gap: 6px; }
+.ds-store-product-card li svg { color: #159468; }
+.ds-store-price-row { display: flex; align-items: end; justify-content: space-between; gap: 14px; margin-top: auto; padding-top: 20px; }
+.ds-store-price-row p { display: flex; gap: 7px; color: #8395a7; font-size: 10px; }
+.ds-store-price-row s { text-decoration-color: #e57777; }
+.ds-store-price-row p span { color: #19895f; font-weight: 850; text-transform: uppercase; }
+.ds-store-price-row strong { display: inline-block; margin-top: 4px; color: #102c49; font-family: var(--font-nunito-sans), Arial, sans-serif; font-size: 24px; letter-spacing: -.045em; }
+.ds-store-price-row small { margin-left: 4px; color: #8192a4; font-size: 10px; font-weight: 700; }
+.ds-store-price-row button { display: grid; width: 42px; height: 42px; flex: 0 0 auto; place-items: center; border: 0; border-radius: 12px; background: #1688db; color: #fff; cursor: pointer; box-shadow: 0 9px 18px rgba(22,136,219,.23); transition: transform 180ms ease, background 180ms ease; }
+.ds-store-price-row button:hover { background: #3e9fe4; transform: scale(1.06); }
+.ds-store-empty { display: grid; justify-items: center; gap: 9px; padding: 70px 20px; border: 1px dashed #b7cadb; border-radius: 18px; color: #708499; text-align: center; }
+.ds-store-empty svg, .ds-store-empty strong { color: #1d75b6; }
+.ds-store-empty strong { font-size: 15px; }
+.ds-store-empty span { font-size: 13px; }
+.ds-store-assurance { padding: 0 0 92px; }
+.ds-store-assurance-grid { display: grid; grid-template-columns: repeat(3, 1fr); overflow: hidden; border: 1px solid #cfdeea; border-radius: 20px; background: #eef5fb; }
+.ds-store-assurance-grid > div { padding: 28px; border-right: 1px solid #d6e2ed; }
+.ds-store-assurance-grid > div:last-child { border: 0; }
+.ds-store-assurance-grid svg { color: #147bc8; }
+.ds-store-assurance-grid h3 { margin-top: 16px; color: #153553; font-size: 15px; }
+.ds-store-assurance-grid p { max-width: 260px; margin-top: 7px; color: #6c8195; font-size: 12px; line-height: 1.6; }
+.ds-store-cart-fab, .ds-store-whatsapp { position: fixed; z-index: 45; display: grid; place-items: center; border: 0; color: #fff; cursor: pointer; box-shadow: 0 14px 28px rgba(7, 31, 57, .28); }
+.ds-store-cart-fab { right: 24px; bottom: 94px; width: 52px; height: 52px; border-radius: 17px; background: #0e77bf; }
+.ds-store-cart-fab span { position: absolute; top: -6px; right: -6px; display: grid; min-width: 19px; height: 19px; place-items: center; padding: 0 4px; border: 2px solid #f4f7fb; border-radius: 50%; background: #ef625f; font-size: 10px; font-weight: 850; }
+.ds-store-whatsapp { right: 24px; bottom: 24px; width: 52px; height: 52px; border-radius: 50%; background: #20b86c; }
+.ds-store-overlay { position: fixed; z-index: 100; inset: 0; display: flex; justify-content: end; background: rgba(3, 16, 35, .58); backdrop-filter: blur(6px); animation: ds-store-fade .2s ease both; }
+@keyframes ds-store-fade { from { opacity: 0; } to { opacity: 1; } }
+.ds-store-cart { display: flex; width: min(425px, 100%); height: 100%; flex-direction: column; background: #fff; box-shadow: -24px 0 60px rgba(0, 10, 28, .22); animation: ds-store-drawer .28s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes ds-store-drawer { from { transform: translateX(100%); } to { transform: translateX(0); } }
+.ds-store-drawer-head { display: flex; align-items: start; justify-content: space-between; padding: 28px 26px 22px; border-bottom: 1px solid #e1eaf1; }
+.ds-store-drawer-head p { color: #1684ce; font-size: 10px; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
+.ds-store-drawer-head h2 { margin-top: 6px; color: #102b47; font-family: var(--font-nunito-sans), Arial, sans-serif; font-size: 30px; letter-spacing: -.055em; }
+.ds-store-drawer-head > button, .ds-store-checkout-close { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid #dbe7ef; border-radius: 50%; background: #f8fbfd; color: #2e4d68; cursor: pointer; }
+.ds-store-cart-empty { display: grid; justify-items: center; gap: 10px; padding: 80px 30px; color: #708297; text-align: center; }
+.ds-store-cart-empty svg { color: #1887d3; }
+.ds-store-cart-empty strong { color: #183753; }
+.ds-store-cart-empty p { font-size: 13px; line-height: 1.6; }
+.ds-store-cart-empty button { margin-top: 10px; padding: 11px 15px; border: 0; border-radius: 10px; background: #e6f4ff; color: #0874be; font: inherit; font-size: 12px; font-weight: 850; cursor: pointer; }
+.ds-store-cart-lines { display: grid; gap: 2px; overflow: auto; padding: 14px 20px; }
+.ds-store-cart-line { display: grid; grid-template-columns: 42px 1fr auto; gap: 11px; align-items: center; padding: 14px 6px; border-bottom: 1px solid #ecf1f5; }
+.ds-store-logo--small { width: 42px; height: 42px; border-radius: 12px; }
+.ds-store-logo--small img { width: 23px; height: 23px; }
+.ds-store-cart-line-copy { display: grid; gap: 3px; min-width: 0; }
+.ds-store-cart-line-copy strong { overflow: hidden; color: #173651; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
+.ds-store-cart-line-copy span { overflow: hidden; color: #8192a4; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+.ds-store-cart-line-copy b { color: #0a78c3; font-size: 12px; }
+.ds-store-quantity { display: flex; align-items: center; gap: 4px; padding: 3px; border: 1px solid #e0e9ef; border-radius: 9px; }
+.ds-store-quantity button { display: grid; width: 23px; height: 23px; place-items: center; border: 0; border-radius: 6px; background: #eef5fa; color: #39708f; cursor: pointer; }
+.ds-store-quantity span { min-width: 14px; color: #34536d; font-size: 11px; font-weight: 850; text-align: center; }
+.ds-store-cart-total { display: flex; justify-content: space-between; margin: auto 26px 0; padding: 22px 0; border-top: 1px solid #dce7ee; color: #536c83; font-size: 13px; }
+.ds-store-cart-total strong { color: #122e49; font-family: var(--font-nunito-sans), Arial, sans-serif; font-size: 26px; letter-spacing: -.045em; }
+.ds-store-checkout-button { display: flex; justify-content: center; align-items: center; gap: 9px; width: calc(100% - 52px); min-height: 52px; margin: 0 26px; border: 0; border-radius: 13px; background: #1388d9; color: #fff; font: inherit; font-size: 13px; font-weight: 850; cursor: pointer; box-shadow: 0 12px 22px rgba(19,136,217,.22); }
+.ds-store-cart-note { display: flex; align-items: start; gap: 7px; padding: 15px 26px 25px; color: #7a8e9f; font-size: 10px; line-height: 1.45; }
+.ds-store-cart-note svg { flex: 0 0 auto; color: #1b9a70; }
+.ds-store-checkout-overlay { display: grid; overflow-y: auto; place-items: center; padding: 24px; }
+.ds-store-checkout { position: relative; display: grid; width: min(900px, 100%); grid-template-columns: .82fr 1.18fr; overflow: hidden; border-radius: 25px; background: #fff; box-shadow: 0 26px 80px rgba(0, 10, 28, .4); animation: ds-store-pop .28s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes ds-store-pop { from { opacity: 0; transform: translateY(18px) scale(.98); } to { opacity: 1; transform: none; } }
+.ds-store-checkout-close { position: absolute; z-index: 2; top: 16px; right: 16px; }
+.ds-store-checkout-intro { min-height: 610px; padding: 54px 42px; background: radial-gradient(circle at 72% 20%, #2c91dc, transparent 30%), #071a36; color: #fff; }
+.ds-store-checkout-icon { display: grid; width: 47px; height: 47px; place-items: center; border-radius: 14px; background: rgba(112, 195, 255, .18); color: #9bdbff; }
+.ds-store-checkout-intro > p { margin-top: 52px; color: #7dcbff; font-size: 10px; font-weight: 850; letter-spacing: .15em; text-transform: uppercase; }
+.ds-store-checkout-intro h2 { margin-top: 12px; color: #fff; font-family: var(--font-nunito-sans), Arial, sans-serif; font-size: clamp(31px, 4vw, 46px); letter-spacing: -.065em; line-height: .96; }
+.ds-store-timer { display: grid; gap: 8px; margin-top: 58px; padding: 20px; border: 1px solid rgba(159,216,255,.24); border-radius: 18px; background: rgba(2, 19, 43, .3); }
+.ds-store-timer svg { color: #86d2ff; }
+.ds-store-timer strong { font-family: var(--font-nunito-sans), Arial, sans-serif; font-size: 38px; letter-spacing: .05em; }
+.ds-store-timer span { color: #b2d5ec; font-size: 11px; }
+.ds-store-checkout-details { padding: 46px 40px 32px; }
+.ds-store-payment-summary { display: flex; align-items: end; justify-content: space-between; padding-bottom: 23px; border-bottom: 1px solid #e0eaf1; }
+.ds-store-payment-summary span { color: #5f778e; font-size: 12px; font-weight: 750; }
+.ds-store-payment-summary strong { display: block; color: #15334f; font-family: var(--font-nunito-sans), Arial, sans-serif; font-size: 29px; letter-spacing: -.05em; }
+.ds-store-payment-summary p { position: absolute; margin-top: 54px; color: #8b9baa; font-size: 10px; }
+.ds-store-payment-methods { display: grid; gap: 8px; margin-top: 35px; border: 0; }
+.ds-store-payment-methods legend { margin-bottom: 10px; color: #24435d; font-size: 12px; font-weight: 850; }
+.ds-store-payment-methods label { display: flex; align-items: center; gap: 11px; min-height: 55px; padding: 0 13px; border: 1px solid #dce7ee; border-radius: 12px; cursor: pointer; }
+.ds-store-payment-methods label.is-selected { border-color: #54a9e5; background: #f1f9ff; box-shadow: inset 0 0 0 1px rgba(84,169,229,.16); }
+.ds-store-payment-methods input { accent-color: #1688d7; }
+.ds-store-payment-methods label span { display: grid; gap: 2px; flex: 1; }
+.ds-store-payment-methods label b { color: #23435f; font-size: 12px; }
+.ds-store-payment-methods label small { color: #8194a5; font-size: 10px; }
+.ds-store-payment-methods label > svg { color: #1688d7; opacity: 0; }
+.ds-store-payment-methods label.is-selected > svg { opacity: 1; }
+.ds-store-account { margin-top: 16px; padding: 17px; border: 1px solid #cfe5f5; border-radius: 14px; background: linear-gradient(135deg, #f4fbff, #eff8fe); }
+.ds-store-account > span { color: #5c778d; font-size: 10px; font-weight: 750; }
+.ds-store-account > strong { display: block; margin-top: 2px; color: #0876bf; font-family: var(--font-nunito-sans), Arial, sans-serif; font-size: 25px; letter-spacing: -.04em; }
+.ds-store-account > div { display: flex; justify-content: space-between; gap: 10px; margin-top: 12px; padding-top: 11px; border-top: 1px solid #d7e9f6; }
+.ds-store-account small { color: #72899d; font-size: 10px; }
+.ds-store-account b { color: #27455e; font-size: 11px; }
+.ds-store-account p { margin-top: 12px; color: #63829a; font-size: 10px; line-height: 1.5; }
+.ds-store-upload { display: flex; align-items: center; gap: 9px; min-height: 50px; margin-top: 14px; padding: 0 13px; border: 1px dashed #9fc5e0; border-radius: 12px; background: #fbfdff; color: #2773a6; cursor: pointer; }
+.ds-store-upload input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.ds-store-upload span { overflow: hidden; flex: 1; font-size: 11px; font-weight: 800; text-overflow: ellipsis; white-space: nowrap; }
+.ds-store-upload small { color: #91a3b1; font-size: 9px; }
+.ds-store-upload.has-file { border-style: solid; border-color: #65bd92; background: #f2fbf6; color: #178054; }
+.ds-store-verify-button { display: flex; justify-content: center; align-items: center; gap: 8px; width: 100%; min-height: 48px; margin-top: 13px; border: 0; border-radius: 12px; background: #0e82d0; color: #fff; font: inherit; font-size: 12px; font-weight: 850; cursor: pointer; transition: background 180ms ease, opacity 180ms ease; }
+.ds-store-verify-button:disabled { opacity: .45; cursor: not-allowed; }
+.ds-store-payment-help { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 13px; color: #1682ca; font-size: 10px; font-weight: 800; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+@media (max-width: 900px) { .ds-store-sale-carousel, .ds-store-sale-content { min-height: 600px; } .ds-store-hero-grid { grid-template-columns: 1fr; gap: 42px; } .ds-store-hero-card { max-width: 580px; min-height: 320px; } .ds-store-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ds-store-filter-bar { align-items: stretch; flex-direction: column; } .ds-store-category-tabs { justify-content: space-between; } .ds-store-checkout { grid-template-columns: 1fr; } .ds-store-checkout-intro { min-height: auto; padding: 34px; } .ds-store-checkout-intro > p { margin-top: 30px; } .ds-store-timer { max-width: 300px; margin-top: 30px; } }
+@media (max-width: 600px) { .ds-store-shell { width: min(100% - 32px, 1180px); } .ds-store-announcement { min-height: 47px; gap: 6px; padding: 5px 12px; font-size: 10px; } .ds-store-announcement a { white-space: nowrap; } .ds-store-sale-carousel, .ds-store-sale-content { min-height: 610px; } .ds-store-sale-content { align-items: end; padding-top: 150px; padding-bottom: 72px; } .ds-store-sale-image { object-position: 66% center; } .ds-store-sale-overlay, .ds-store-sale-slide--forest .ds-store-sale-overlay, .ds-store-sale-slide--ember .ds-store-sale-overlay { background: linear-gradient(90deg, rgba(8,7,9,.92) 0%, rgba(8,7,9,.73) 100%), linear-gradient(0deg, rgba(6,5,7,.94) 3%, rgba(6,5,7,.46) 70%, rgba(6,5,7,.15) 100%); } .ds-store-sale-copy > p:not(.ds-store-eyebrow) { font-size: 14px; } .ds-store-sale-price { margin-top: 19px; } .ds-store-sale-controls { bottom: 20px; } .ds-store-hero h1 { font-size: clamp(46px, 13vw, 64px); } .ds-store-hero-copy > p:not(.ds-store-eyebrow) { font-size: 15px; } .ds-store-trust-row { gap: 9px 13px; font-size: 10px; } .ds-store-hero-card { min-height: 290px; padding: 22px; border-radius: 22px; } .ds-store-brand-cloud { margin: 38px 0 24px; } .ds-store-brand-cloud span { width: 38px; height: 38px; border-radius: 12px; } .ds-store-brand-cloud img { width: 21px; height: 21px; } .ds-store-feature-copy strong { font-size: 21px; } .ds-store-catalog { padding: 62px 0 75px; } .ds-store-catalog-heading { display: block; } .ds-store-catalog-heading > p { margin-top: 18px; } .ds-store-filter-bar { margin-top: 28px; padding: 8px; border-radius: 15px; } .ds-store-category-tabs { display: grid; grid-template-columns: repeat(3, 1fr); } .ds-store-category-tabs button { padding: 0 5px; font-size: 11px; } .ds-store-results { align-items: start; flex-direction: column; gap: 5px; font-size: 10px; } .ds-store-grid { grid-template-columns: 1fr; } .ds-store-product-card { min-height: auto; } .ds-store-product-copy > p:last-child { min-height: auto; } .ds-store-assurance { padding-bottom: 64px; } .ds-store-assurance-grid { grid-template-columns: 1fr; } .ds-store-assurance-grid > div { padding: 22px; border-right: 0; border-bottom: 1px solid #d6e2ed; } .ds-store-assurance-grid > div:last-child { border-bottom: 0; } .ds-store-cart-fab { right: 16px; bottom: 80px; } .ds-store-whatsapp { right: 16px; bottom: 18px; } .ds-store-checkout-overlay { align-items: start; padding: 10px; } .ds-store-checkout { border-radius: 18px; } .ds-store-checkout-intro, .ds-store-checkout-details { padding: 30px 21px; } .ds-store-checkout-intro h2 { font-size: 34px; } .ds-store-timer { margin-top: 25px; padding: 16px; } .ds-store-payment-summary strong { font-size: 25px; } }
+@media (prefers-reduced-motion: reduce) { .ds-store-product-card, .ds-store-button, .ds-store-price-row button { transition: none; } .ds-store-overlay, .ds-store-cart, .ds-store-checkout { animation: none; } }
+
+/* Checkout: deliberately restrained, receipt-first payment sheet. */
+.ds-store-checkout { grid-template-columns: minmax(270px, .76fr) minmax(430px, 1.24fr); border: 1px solid rgba(255,255,255,.16); border-radius: 22px; background: #fff; }
+.ds-store-checkout-intro { display: flex; min-height: 590px; flex-direction: column; padding: 44px 40px 36px; background: linear-gradient(154deg, #17191d 0%, #0d1014 60%, #24211d 100%); }
+.ds-store-checkout-intro > p { margin-top: 45px; color: #c9a66f; font-size: 10px; letter-spacing: .14em; }
+.ds-store-checkout-intro h2 { margin-top: 11px; font-size: clamp(34px, 4vw, 48px); }
+.ds-store-checkout-reference { display: block; max-width: 200px; margin-top: 16px; color: #aab0b9; font-size: 11px; line-height: 1.55; }
+.ds-store-checkout-icon { background: rgba(214, 176, 111, .14); color: #e3bb78; }
+.ds-store-timer { display: flex; align-items: center; gap: 12px; margin-top: auto; padding: 15px 16px; border: 1px solid rgba(237, 206, 153, .17); border-radius: 12px; background: rgba(255,255,255,.045); }
+.ds-store-timer > div { display: grid; gap: 3px; }
+.ds-store-timer > div span { color: #b2b7bf; font-size: 9px; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+.ds-store-timer strong { font-family: var(--font-geist-mono), monospace; font-size: 23px; letter-spacing: .06em; }
+.ds-store-timer > span { display: none; }
+.ds-store-checkout-trust { display: flex; align-items: center; gap: 7px; margin-top: 17px; color: #a9b1b9; font-size: 10px; }
+.ds-store-checkout-trust svg { color: #9ecb9b; }
+.ds-store-checkout-details { position: relative; padding: 40px 42px 26px; }
+.ds-store-checkout-topline { display: flex; justify-content: space-between; gap: 16px; padding: 0 0 23px; border-bottom: 1px solid #e6e9ec; }
+.ds-store-checkout-topline > div { display: grid; gap: 5px; }
+.ds-store-checkout-topline span { color: #52606d; font-size: 12px; font-weight: 850; }
+.ds-store-checkout-topline p { color: #88929e; font-size: 11px; }
+.ds-store-checkout-topline > strong { align-self: end; color: #1f2934; font-family: var(--font-nunito-sans), Arial, sans-serif; font-size: 27px; letter-spacing: -.055em; }
+.ds-store-payment-summary { display: none; }
+.ds-store-payment-methods { margin-top: 26px; }
+.ds-store-payment-methods legend { margin-bottom: 10px; color: #26333f; font-size: 12px; font-weight: 850; }
+.ds-store-payment-methods label { position: relative; min-height: 58px; gap: 11px; border-color: #e2e6ea; border-radius: 11px; background: #fff; transition: border-color 180ms ease, background 180ms ease; }
+.ds-store-payment-methods label:hover { border-color: #bfc7cf; }
+.ds-store-payment-methods label.is-selected { border-color: #222b33; background: #f8f9f8; box-shadow: none; }
+.ds-store-payment-methods input { position: absolute; opacity: 0; }
+.ds-store-method-radio { width: 15px; height: 15px; flex: 0 0 auto; border: 1.5px solid #a7b0b9; border-radius: 50%; background: #fff; }
+.ds-store-payment-methods label.is-selected .ds-store-method-radio { border: 4px solid #2d8061; }
+.ds-store-payment-methods label b { color: #26333f; font-size: 12px; }
+.ds-store-payment-methods label small { color: #929ba5; font-size: 10px; }
+.ds-store-payment-methods label > svg { color: #2d8061; }
+.ds-store-account { margin-top: 18px; padding: 0 18px 16px; border: 1px solid #e3e5e3; border-top: 3px solid #bb9361; border-radius: 12px; background: #fbfbfa; }
+.ds-store-account-heading { display: flex; justify-content: space-between; align-items: end; margin: 0 -18px 13px; padding: 14px 18px 12px; border-bottom: 1px solid #e6e7e5; }
+.ds-store-account-heading > span { color: #59636c; font-size: 10px; font-weight: 850; letter-spacing: .09em; text-transform: uppercase; }
+.ds-store-account-heading > strong { margin: 0; color: #22302c; font-family: var(--font-nunito-sans), Arial, sans-serif; font-size: 22px; letter-spacing: -.04em; }
+.ds-store-account > div:not(.ds-store-account-heading) { margin-top: 0; padding: 10px 0; border-top: 1px solid #eceeeb; }
+.ds-store-account > .ds-store-account-heading + div { border-top: 0; }
+.ds-store-account small { color: #7b858e; font-size: 10px; }
+.ds-store-account b { color: #27343c; font-size: 11px; }
+.ds-store-account-number { font-family: var(--font-geist-mono), monospace; letter-spacing: .07em; }
+.ds-store-account p { margin-top: 10px; color: #77818a; font-size: 10px; }
+.ds-store-upload { min-height: 52px; border-color: #b9c2c8; border-radius: 11px; background: #fff; color: #3e505f; }
+.ds-store-upload:hover { border-color: #66737e; background: #fbfcfc; }
+.ds-store-upload.has-file { border-color: #7eb397; background: #f6fbf7; color: #2d8056; }
+.ds-store-verify-button { min-height: 50px; border-radius: 11px; background: #1f7560; box-shadow: none; }
+.ds-store-verify-button:not(:disabled):hover { background: #2d896f; }
+.ds-store-verification-note { margin-top: 9px; color: #89929a; font-size: 10px; text-align: center; }
+.ds-store-payment-help { margin-top: 13px; color: #256c58; }
+.ds-store-cancel-order { display: block; margin: 15px auto 0; padding: 6px 4px; border: 0; border-bottom: 1px solid #c7a9a7; background: transparent; color: #a45451; font: inherit; font-size: 10px; font-weight: 800; cursor: pointer; }
+.ds-store-cancel-order:hover { color: #813d3b; }
+.ds-store-cancel-confirm { position: absolute; z-index: 5; inset: 0; display: grid; align-content: center; justify-items: center; gap: 12px; padding: 30px; background: rgba(252,252,251,.97); text-align: center; }
+.ds-store-cancel-confirm div { display: grid; gap: 7px; max-width: 260px; margin-bottom: 5px; }
+.ds-store-cancel-confirm span { color: #252f36; font-family: var(--font-nunito-sans), Arial, sans-serif; font-size: 25px; font-weight: 850; letter-spacing: -.045em; }
+.ds-store-cancel-confirm p { color: #77818a; font-size: 12px; line-height: 1.55; }
+.ds-store-cancel-confirm button { width: min(230px, 100%); min-height: 42px; border: 1px solid #d8dde0; border-radius: 9px; background: #fff; color: #38454f; font: inherit; font-size: 11px; font-weight: 850; cursor: pointer; }
+.ds-store-cancel-confirm button:last-child { border-color: #b75e5a; background: #b75e5a; color: #fff; }
+@media (max-width: 900px) { .ds-store-checkout-intro { min-height: auto; padding: 34px; } .ds-store-timer { max-width: none; margin-top: 30px; } }
+@media (max-width: 600px) { .ds-store-checkout-details { padding: 27px 20px 24px; } .ds-store-checkout-intro { padding: 30px 22px; } .ds-store-checkout-intro > p { margin-top: 30px; } .ds-store-checkout-reference { max-width: 250px; } .ds-store-checkout-topline > strong { font-size: 24px; } .ds-store-account { padding-inline: 14px; } .ds-store-account-heading { margin-inline: -14px; padding-inline: 14px; } }
+
+/* Glass checkout system */
+.ds-store-checkout-overlay { padding: 22px; background: rgba(2, 6, 12, .42); backdrop-filter: blur(22px) saturate(135%); }
+.ds-store-checkout { position: relative; isolation: isolate; grid-template-columns: minmax(285px, .8fr) minmax(450px, 1.2fr); overflow: hidden; border: 1px solid rgba(255,255,255,.26); border-radius: 26px; background: linear-gradient(125deg, rgba(19, 27, 38, .34), rgba(10, 16, 27, .18)); box-shadow: 0 28px 100px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.21); backdrop-filter: blur(38px) saturate(145%); -webkit-backdrop-filter: blur(38px) saturate(145%); }
+.ds-store-checkout::before, .ds-store-checkout::after { position: absolute; z-index: -1; border-radius: 50%; content: ""; filter: blur(12px); }
+.ds-store-checkout::before { top: -180px; left: -120px; width: 430px; height: 430px; background: rgba(176, 99, 160, .07); }
+.ds-store-checkout::after { right: -160px; bottom: -180px; width: 390px; height: 390px; background: rgba(75, 164, 134, .06); }
+.ds-store-checkout-close { top: 17px; right: 17px; border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.09); color: #fff; backdrop-filter: blur(10px); }
+.ds-store-checkout-close:hover { background: rgba(255,255,255,.18); }
+.ds-store-checkout-intro { min-height: 580px; padding: 46px 38px 34px; border-right: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.025); box-shadow: inset 0 1px 0 rgba(255,255,255,.19), inset -1px 0 0 rgba(255,255,255,.05); backdrop-filter: blur(44px) saturate(165%); -webkit-backdrop-filter: blur(44px) saturate(165%); }
+.ds-store-checkout-icon { border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.12); color: #f1c980; box-shadow: inset 0 1px 0 rgba(255,255,255,.16); }
+.ds-store-checkout-intro > p { margin-top: 45px; color: #f1c980; }
+.ds-store-checkout-intro h2 { color: #fff; text-shadow: 0 2px 22px rgba(0,0,0,.2); }
+.ds-store-checkout-reference { color: rgba(237,244,250,.66); }
+.ds-store-timer { border-color: rgba(255,255,255,.16); background: rgba(3, 8, 15, .28); box-shadow: inset 0 1px 0 rgba(255,255,255,.09); backdrop-filter: blur(15px); }
+.ds-store-timer svg { color: #f1c980; }
+.ds-store-timer > div span { color: rgba(235,243,250,.6); }
+.ds-store-timer strong { color: #fff; }
+.ds-store-checkout-trust { color: rgba(237,244,250,.7); }
+.ds-store-checkout-trust svg { color: #9fdbb9; }
+.ds-store-checkout-details { padding: 42px 42px 27px; background: rgba(255,255,255,.035); }
+.ds-store-checkout-topline { border-color: rgba(255,255,255,.13); }
+.ds-store-checkout-topline span { color: rgba(244,248,251,.96); }
+.ds-store-checkout-topline p { color: rgba(223,233,241,.59); }
+.ds-store-checkout-topline > strong { color: #fff; }
+.ds-store-payment-methods legend { color: rgba(248,250,252,.88); }
+.ds-store-payment-methods label { border-color: rgba(255,255,255,.14); background: rgba(255,255,255,.055); box-shadow: inset 0 1px 0 rgba(255,255,255,.07); backdrop-filter: blur(12px); }
+.ds-store-payment-methods label .ds-store-method-copy { display: grid; flex: 1; gap: 2px; }
+.ds-store-payment-methods label .ds-store-wallet-mark { display: grid; width: 34px; height: 34px; flex: 0 0 34px; place-items: center; border: 1px solid rgba(255,255,255,.26); border-radius: 10px; color: #fff; font-family: Arial, sans-serif; font-size: 16px; font-weight: 900; letter-spacing: -.08em; line-height: 1; box-shadow: inset 0 1px 0 rgba(255,255,255,.26), 0 5px 14px rgba(0,0,0,.12); }
+.ds-store-wallet-mark--easypaisa { background: linear-gradient(145deg, #36b969, #18764b); font-size: 23px; font-style: italic; }
+.ds-store-wallet-mark--jazzcash { background: linear-gradient(145deg, #ec6259, #a72834); font-size: 10px; letter-spacing: -.11em; }
+.ds-store-wallet-mark--nayapay { background: linear-gradient(145deg, #19c8a5, #0b7e85); font-size: 21px; }
+.ds-store-payment-methods label:hover { border-color: rgba(247, 210, 141, .5); background: rgba(255,255,255,.09); }
+.ds-store-payment-methods label.is-selected { border-color: rgba(243, 204, 135, .75); background: linear-gradient(110deg, rgba(226, 176, 104, .17), rgba(255,255,255,.08)); box-shadow: inset 0 1px 0 rgba(255,255,255,.13), 0 8px 22px rgba(0,0,0,.11); }
+.ds-store-payment-methods label b { color: #fff; }
+.ds-store-payment-methods label small { color: rgba(224,234,241,.61); }
+.ds-store-payment-methods label > svg { color: #f1c980; }
+.ds-store-account { border-color: rgba(255,255,255,.15); border-top-color: #f1c980; background: rgba(6, 11, 18, .28); box-shadow: inset 0 1px 0 rgba(255,255,255,.09); backdrop-filter: blur(15px); }
+.ds-store-account-heading { border-color: rgba(255,255,255,.12); }
+.ds-store-account-heading > span { color: rgba(224,234,241,.62); }
+.ds-store-account-heading > strong { color: #fff; }
+.ds-store-account > div:not(.ds-store-account-heading) { border-color: rgba(255,255,255,.1); }
+.ds-store-account small { color: rgba(220,231,239,.57); }
+.ds-store-account b { color: #fff; }
+.ds-store-account p { color: rgba(222,232,240,.66); }
+.ds-store-upload { border-color: rgba(255,255,255,.25); background: rgba(255,255,255,.055); color: rgba(247,250,252,.9); box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+.ds-store-upload:hover { border-color: rgba(241,201,128,.64); background: rgba(255,255,255,.1); }
+.ds-store-upload small { color: rgba(219,231,240,.5); }
+.ds-store-upload.has-file { border-color: rgba(142,210,167,.7); background: rgba(94,175,126,.13); color: #caefda; }
+.ds-store-verify-button { background: linear-gradient(110deg, #d7a652, #eecc91); color: #20170a; box-shadow: 0 12px 28px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.3); }
+.ds-store-verify-button:not(:disabled):hover { background: linear-gradient(110deg, #e4b663, #f7dca9); }
+.ds-store-verification-note { color: rgba(218,229,237,.56); }
+.ds-store-payment-help { color: #bfe6d0; }
+.ds-store-cancel-order { border-color: rgba(248, 172, 167, .45); color: #f0aaa4; }
+.ds-store-cancel-order:hover { color: #ffd0cb; }
+.ds-store-cancel-confirm { background: rgba(11, 16, 25, .88); backdrop-filter: blur(24px); }
+.ds-store-cancel-confirm span { color: #fff; }
+.ds-store-cancel-confirm p { color: rgba(223,233,241,.65); }
+.ds-store-cancel-confirm button { border-color: rgba(255,255,255,.17); background: rgba(255,255,255,.1); color: #fff; }
+.ds-store-cancel-confirm button:last-child { border-color: rgba(233, 129, 121, .75); background: rgba(186, 81, 74, .86); }
+@media (max-width: 760px) { .ds-store-checkout-overlay { align-items: start; padding: 10px; } .ds-store-checkout { grid-template-columns: 1fr; width: min(540px, 100%); border-radius: 21px; } .ds-store-checkout-intro { min-height: auto; padding: 29px 24px 24px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.12); } .ds-store-checkout-intro > p { margin-top: 25px; } .ds-store-checkout-intro h2 { font-size: 35px; } .ds-store-checkout-reference { max-width: 320px; margin-top: 10px; } .ds-store-timer { margin-top: 22px; } .ds-store-checkout-trust { margin-top: 13px; } .ds-store-checkout-details { padding: 26px 20px 23px; } .ds-store-checkout-topline > strong { font-size: 24px; } .ds-store-payment-methods { margin-top: 21px; } .ds-store-account { margin-top: 14px; } }
+
+@media (max-width: 900px) {
+  .ds-store-filter-bar { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .ds-store-search { height: 44px; min-height: 44px; max-height: 44px; flex: none; }
+}
+
+/* Checkout follows the light catalog-card system. */
+.ds-store-checkout-overlay { background: rgba(12, 35, 57, .28); backdrop-filter: blur(18px) saturate(125%); }
+.ds-store-checkout { border-color: #d8e4ee; background: linear-gradient(135deg, rgba(255,255,255,.95), rgba(244,250,255,.88)); box-shadow: 0 28px 76px rgba(16, 53, 86, .24), inset 0 1px 0 #fff; backdrop-filter: blur(24px) saturate(135%); }
+.ds-store-checkout::before, .ds-store-checkout::after { display: none; }
+.ds-store-checkout-close { border-color: #d5e2ed; background: rgba(255,255,255,.82); color: #32516b; box-shadow: 0 5px 13px rgba(30,74,111,.08); }
+.ds-store-checkout-close:hover { background: #fff; color: #137dcc; }
+.ds-store-checkout-intro { border-right-color: #dce8f1; background: linear-gradient(145deg, rgba(250,253,255,.96), rgba(234,246,255,.84)); box-shadow: inset 0 1px 0 #fff; backdrop-filter: blur(24px) saturate(135%); }
+.ds-store-checkout-icon { border-color: #d9e8f5; background: linear-gradient(145deg, #f7fcff, #e7f3fc); color: #1688db; box-shadow: inset 0 1px 0 #fff; }
+.ds-store-checkout-intro > p { color: #147ec9; }
+.ds-store-checkout-intro h2 { color: #102c49; text-shadow: none; }
+.ds-store-checkout-reference { color: #687d92; }
+.ds-store-timer { border-color: #d6e5f0; background: rgba(255,255,255,.72); box-shadow: inset 0 1px 0 #fff; backdrop-filter: blur(12px); }
+.ds-store-timer svg { color: #1688db; }
+.ds-store-timer > div span, .ds-store-checkout-trust { color: #60778c; }
+.ds-store-timer strong { color: #102c49; }
+.ds-store-checkout-trust svg { color: #159468; }
+.ds-store-checkout-details { background: rgba(255,255,255,.57); }
+.ds-store-checkout-topline { border-color: #dce8f1; }
+.ds-store-checkout-topline span, .ds-store-payment-methods legend { color: #234766; }
+.ds-store-checkout-topline p { color: #718398; }
+.ds-store-checkout-topline > strong { color: #102c49; }
+.ds-store-payment-methods label { border-color: #d8e4ee; background: rgba(255,255,255,.8); box-shadow: inset 0 1px 0 #fff; }
+.ds-store-payment-methods label:hover { border-color: #9fd1f5; background: #f8fcff; }
+.ds-store-payment-methods label.is-selected { border-color: #1688db; background: #f1f9ff; box-shadow: inset 0 0 0 1px rgba(22,136,219,.12); }
+.ds-store-payment-methods label b { color: #23435f; }
+.ds-store-payment-methods label small { color: #8194a5; }
+.ds-store-payment-methods label > svg { color: #1688db; }
+.ds-store-account { border-color: #cfe5f5; border-top-color: #1688db; background: linear-gradient(135deg, rgba(247,252,255,.9), rgba(235,247,255,.82)); box-shadow: inset 0 1px 0 #fff; }
+.ds-store-account-heading, .ds-store-account > div:not(.ds-store-account-heading) { border-color: #d7e9f6; }
+.ds-store-account-heading > span, .ds-store-account small, .ds-store-account p { color: #63829a; }
+.ds-store-account-heading > strong { color: #0876bf; }
+.ds-store-account b { color: #27455e; }
+.ds-store-upload { border-color: #9fc5e0; background: rgba(255,255,255,.8); color: #2773a6; box-shadow: none; }
+.ds-store-upload:hover { border-color: #1688db; background: #f6fbff; }
+.ds-store-upload small, .ds-store-verification-note { color: #8194a5; }
+.ds-store-verification-status { margin-top: 11px; padding: 10px 12px; border: 1px solid #b9d9ef; border-radius: 10px; background: #edf8ff; color: #176da8; font-size: 10px; font-weight: 750; line-height: 1.45; text-align: center; }
+.ds-store-verify-button { background: #1688db; color: #fff; box-shadow: 0 12px 22px rgba(22,136,219,.23); }
+.ds-store-verify-button:not(:disabled):hover { background: #3e9fe4; }
+.ds-store-payment-help { color: #1682ca; }
+.ds-store-cancel-order { border-color: #efb6b3; color: #bc5c58; }
+.ds-store-cancel-order:hover { color: #923a37; }
+.ds-store-cancel-confirm { background: rgba(255,255,255,.94); box-shadow: 0 16px 40px rgba(25,69,104,.16); }
+.ds-store-cancel-confirm span { color: #23435f; }
+.ds-store-cancel-confirm p { color: #718398; }
+.ds-store-cancel-confirm button { border-color: #d8e4ee; background: #fff; color: #384f64; }
+
+/* Phone storefront: compact catalog, unobtrusive actions and a full-height checkout sheet. */
+@media (max-width: 600px) {
+  .ds-store-page { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
+  .ds-store-shell { width: min(100% - 24px, 1180px); }
+  .ds-store-catalog { padding: 54px 0 64px; }
+  .ds-store-catalog-heading h2 { font-size: clamp(34px, 11vw, 44px); }
+  .ds-store-catalog-heading > p { font-size: 13px; line-height: 1.55; }
+  .ds-store-filter-bar { margin-top: 24px; padding: 7px; }
+  .ds-store-search { height: 48px; min-height: 48px; max-height: 48px; }
+  .ds-store-search input { min-width: 0; font-size: 16px; }
+  .ds-store-category-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ds-store-category-tabs button { min-height: 44px; }
+  .ds-store-results { margin-block: 17px; }
+  .ds-store-grid { gap: 14px; }
+  .ds-store-product-card { padding: 18px; border-radius: 17px; }
+  .ds-store-logo { width: 48px; height: 48px; border-radius: 14px; }
+  .ds-store-product-copy { margin-top: 18px; }
+  .ds-store-product-copy h3 { font-size: 22px; }
+  .ds-store-price-row button { width: 46px; height: 46px; }
+  .ds-store-assurance-grid { border-radius: 17px; }
+
+  .ds-store-cart-fab,
+  .ds-store-whatsapp { width: 50px; height: 50px; bottom: calc(14px + env(safe-area-inset-bottom)); }
+  .ds-store-cart-fab { right: 72px; }
+  .ds-store-whatsapp { right: 14px; }
+
+  .ds-store-cart { width: 100%; max-width: 100%; border-radius: 22px 22px 0 0; }
+  .ds-store-cart-line { grid-template-columns: 42px minmax(0, 1fr); }
+  .ds-store-quantity { grid-column: 2; width: fit-content; }
+  .ds-store-quantity button { width: 44px; height: 44px; }
+  .ds-store-cart-total { margin-inline: 18px; }
+  .ds-store-checkout-button { width: calc(100% - 36px); margin-inline: 18px; }
+  .ds-store-cart-note { padding-inline: 18px; }
+
+  .ds-store-checkout-overlay { align-items: start; padding: 0; }
+  .ds-store-checkout { width: 100%; min-height: 100dvh; border-width: 0; border-radius: 0; }
+  .ds-store-checkout-close { top: 14px; right: 14px; width: 44px; height: 44px; }
+  .ds-store-checkout-intro { padding: 24px 18px 22px; }
+  .ds-store-checkout-icon { width: 44px; height: 44px; }
+  .ds-store-checkout-intro > p { margin-top: 22px; }
+  .ds-store-checkout-intro h2 { max-width: 240px; font-size: 34px; }
+  .ds-store-checkout-reference { margin-top: 8px; }
+  .ds-store-timer { margin-top: 18px; padding: 14px; }
+  .ds-store-checkout-details { padding: 24px 16px calc(26px + env(safe-area-inset-bottom)); }
+  .ds-store-checkout-topline { align-items: end; gap: 10px; }
+  .ds-store-payment-methods label { min-height: 64px; padding-inline: 11px; }
+  .ds-store-account-heading { align-items: flex-start; flex-direction: column; gap: 5px; }
+  .ds-store-account > div:not(.ds-store-account-heading) { align-items: flex-start; flex-direction: column; gap: 4px; }
+  .ds-store-account-number { overflow-wrap: anywhere; }
+  .ds-store-upload { min-height: 56px; }
+  .ds-store-upload small { display: none; }
+  .ds-store-verify-button { min-height: 52px; }
+  .ds-store-payment-help { min-height: 44px; text-align: center; }
+  .ds-store-cancel-order { min-height: 44px; padding-inline: 16px; }
+  .ds-store-cancel-confirm button { min-height: 46px; }
+}
+
+@media (max-width: 350px) {
+  .ds-store-product-card { padding: 16px; }
+  .ds-store-price-row { gap: 8px; }
+  .ds-store-price-row strong { font-size: 22px; }
+  .ds-store-checkout-topline { align-items: flex-start; flex-direction: column; }
+}

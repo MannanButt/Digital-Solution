@@ -1,0 +1,14 @@
+.git
+.gitignore
+.npm-cache
+.next
+.vinext
+.wrangler
+dist
+node_modules
+outputs
+work
+.env*
+.dev.vars
+npm-debug.log*
+*.tsbuildinfo

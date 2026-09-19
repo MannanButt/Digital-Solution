@@ -1,0 +1,306 @@
+/* ═══════════════════════════════════════════════════════════
+   CLIENT REVIEWS PAGE STYLES (Digital Solutions Tokens)
+═══════════════════════════════════════════════════════════ */
+
+.vx-reviews-page {
+  min-height: 100vh;
+  background: var(--vx-canvas);
+  color: var(--vx-black);
+  padding: 48px 24px 100px;
+}
+
+.vx-reviews-page-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Header & Back Link */
+.vx-reviews-page-header {
+  margin-bottom: 48px;
+}
+
+.vx-reviews-page-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--vx-blue);
+  background: #ffffff;
+  border: 1px solid var(--vx-line);
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  margin-bottom: 28px;
+  transition: all 0.2s ease;
+}
+
+.vx-reviews-page-back:hover {
+  background: #f8fafc;
+  transform: translateX(-2px);
+  border-color: var(--vx-blue-bright);
+}
+
+.vx-reviews-page-eyebrow {
+  display: block;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--vx-blue);
+  margin-bottom: 10px;
+}
+
+.vx-reviews-page-title {
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--vx-black-soft);
+  margin: 0 0 16px;
+  line-height: 1.1;
+}
+
+.vx-reviews-page-subtitle {
+  font-size: 17px;
+  color: #475569;
+  line-height: 1.6;
+  max-width: 680px;
+  margin: 0;
+}
+
+/* Reviews Stats Ribbon */
+.vx-reviews-stats-ribbon {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  background: #ffffff;
+  border: 1px solid var(--vx-line);
+  border-radius: 16px;
+  padding: 24px 32px;
+  margin-bottom: 44px;
+  box-shadow: 0 4px 20px rgba(14, 96, 201, 0.04);
+}
+
+@media (max-width: 860px) {
+  .vx-reviews-stats-ribbon {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  .vx-reviews-stats-ribbon {
+    grid-template-columns: 1fr;
+  }
+}
+
+.vx-reviews-stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.vx-reviews-stat-num {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--vx-blue);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.vx-reviews-stat-label {
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/* Reviews Cards Grid */
+.vx-reviews-full-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  margin-bottom: 64px;
+}
+
+@media (max-width: 1040px) {
+  .vx-reviews-full-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .vx-reviews-full-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Individual Review Card */
+.vx-reviews-full-card {
+  background: #ffffff;
+  border: 1px solid var(--vx-line);
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 8px 24px rgba(10, 27, 51, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.vx-reviews-full-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--vx-blue), var(--vx-sky));
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.vx-reviews-full-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(14, 96, 201, 0.12);
+  border-color: var(--vx-blue-bright);
+}
+
+.vx-reviews-full-card:hover::before {
+  opacity: 1;
+}
+
+/* Card Header */
+.vx-reviews-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.vx-reviews-stars-row {
+  display: flex;
+  gap: 3px;
+  color: #f59e0b;
+}
+
+.vx-reviews-card-tag {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--vx-blue);
+  background: var(--vx-sky-light);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+/* Quote */
+.vx-reviews-card-quote {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #1e293b;
+  margin: 0 0 20px;
+  font-style: normal;
+  flex-grow: 1;
+}
+
+/* Outcome Pill */
+.vx-reviews-card-outcome {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(14, 96, 201, 0.06);
+  border: 1px solid rgba(14, 96, 201, 0.15);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--vx-blue-deep);
+  margin-bottom: 20px;
+}
+
+/* Author Row */
+.vx-reviews-card-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.vx-reviews-card-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--vx-blue), var(--vx-black-soft));
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(14, 96, 201, 0.25);
+}
+
+.vx-reviews-card-meta strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--vx-black-soft);
+}
+
+.vx-reviews-card-meta span {
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* Bottom CTA Banner */
+.vx-reviews-page-cta {
+  background: linear-gradient(135deg, var(--vx-black-soft) 0%, var(--vx-blue-deep) 100%);
+  border-radius: 20px;
+  padding: 48px;
+  color: #ffffff;
+  text-align: center;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.vx-reviews-page-cta h2 {
+  font-size: clamp(26px, 3.5vw, 36px);
+  font-weight: 800;
+  margin: 0 0 14px;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.vx-reviews-page-cta p {
+  font-size: 16px;
+  color: #cbd5e1;
+  max-width: 600px;
+  margin: 0 auto 28px;
+  line-height: 1.6;
+}
+
+.vx-reviews-page-cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  color: var(--vx-blue-deep);
+  font-weight: 800;
+  font-size: 14px;
+  padding: 14px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.vx-reviews-page-cta a:hover {
+  background: var(--vx-sky-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
