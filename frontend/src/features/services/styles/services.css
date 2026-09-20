@@ -13,6 +13,9 @@
 .ds-service-mobile-nav { display: none; }
 
 .ds-service-hub-hero, .ds-service-detail-hero { position: relative; isolation: isolate; width: 100%; min-height: 720px; background-position: center; background-size: cover; background-repeat: no-repeat; color: #fff; }
+.ds-service-hero-media, .ds-service-hero-media picture, .ds-service-hero-media img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ds-service-hero-media { z-index: -2; background: #061631; }
+.ds-service-hero-media img { object-fit: cover; object-position: center; }
 .ds-service-hub-hero::before, .ds-service-detail-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(3,15,39,.94) 0%, rgba(5,22,52,.77) 48%, rgba(5,22,52,.42) 100%), linear-gradient(0deg, rgba(3,15,39,.82), transparent 55%); }
 .ds-service-hub-hero-inner, .ds-service-detail-hero-inner { width: min(1180px, calc(100% - 48px)); margin: 0 auto; padding-top: 260px; }
 .ds-service-detail-hero-inner { padding-top: 220px; padding-bottom: 82px; }
@@ -35,6 +38,8 @@
 .ds-service-hero-description { max-width: 700px; margin-top: 14px; color: #b7c9dc; font-size: 16px; line-height: 1.7; }
 .ds-service-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 .ds-service-primary, .ds-service-secondary { display: inline-flex; align-items: center; gap: 9px; min-height: 48px; padding: 0 20px; border-radius: 999px; font-size: 13px; font-weight: 850; transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease; }
+.ds-primary-button { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; flex-shrink: 0; padding: 0 28px; border-radius: 999px; background: linear-gradient(135deg, #0ea5e9, #0e60c9); color: #fff; font-size: 14px; font-weight: 700; box-shadow: 0 12px 28px rgba(14, 96, 201, .28); transition: transform 180ms ease, box-shadow 180ms ease; }
+.ds-primary-button:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(14, 96, 201, .4); }
 .ds-service-primary { background: #2f8cff; color: #fff; box-shadow: 0 10px 24px rgba(27,126,239,.3); }
 .ds-service-primary:hover { background: #49a0ff; transform: translateY(-2px); box-shadow: 0 14px 30px rgba(27,126,239,.42); }
 .ds-service-secondary { border: 1px solid rgba(154,202,245,.5); background: rgba(4,22,53,.42); color: #e3f0ff; }

@@ -1,5 +1,3 @@
-@import "tailwindcss";
-
 /* ═══════════════════════════════════════════════════════════
    DESIGN TOKENS
 ═══════════════════════════════════════════════════════════ */
@@ -165,6 +163,7 @@ button:focus-visible {
 /* ── Hero media slides ── */
 .vx-hero-media,
 .vx-hero-slide,
+.vx-hero-slide picture,
 .vx-hero-slide img,
 .vx-hero-shade {
   position: absolute;
@@ -582,6 +581,7 @@ button:focus-visible {
 }
 
 .vx-mega-preview-images,
+.vx-mega-preview-images picture,
 .vx-mega-preview-images img,
 .vx-mega-preview-shade {
   position: absolute;
@@ -1218,7 +1218,7 @@ button:focus-visible {
 }
 
 .vx-process-step-counter {
-  font-family: var(--font-roboto-mono), monospace, sans-serif;
+  font-family: var(--font-geist-mono), monospace, sans-serif;
   font-size: 12px;
   font-weight: 700;
   color: #0e60c9;
@@ -1388,7 +1388,7 @@ button:focus-visible {
 }
 
 .vx-terminal-title {
-  font-family: var(--font-roboto-mono), monospace, sans-serif;
+  font-family: var(--font-geist-mono), monospace, sans-serif;
   font-size: 12px;
   color: rgba(255, 255, 255, 0.6);
   letter-spacing: 0.02em;
@@ -1396,7 +1396,7 @@ button:focus-visible {
 
 .vx-terminal-body {
   padding: 24px 24px 28px;
-  font-family: var(--font-roboto-mono), monospace, sans-serif;
+  font-family: var(--font-geist-mono), monospace, sans-serif;
   font-size: 13.5px;
   line-height: 1.8;
   display: flex;
@@ -1453,7 +1453,7 @@ button:focus-visible {
 }
 
 .vx-practice-step-num {
-  font-family: var(--font-roboto-mono), monospace, sans-serif;
+  font-family: var(--font-geist-mono), monospace, sans-serif;
   font-size: 11px;
   font-weight: 700;
   color: #0e60c9;
@@ -1796,6 +1796,7 @@ button:focus-visible {
   overflow: hidden;
 }
 
+.vx-project-cover picture,
 .vx-project-cover img,
 .vx-project-cover video {
   width: 100%;
@@ -2862,6 +2863,14 @@ button:focus-visible {
   height: 100%;
   object-fit: cover;
   transition: transform 0.4s ease;
+}
+
+.vx-project-cover picture,
+.vx-service-card-image picture,
+.vx-mega-preview-images picture {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .vx-service-card-main:hover .vx-service-card-image img {

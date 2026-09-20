@@ -1,5 +1,6 @@
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import PrimaryButton from "@/src/components/ui/PrimaryButton";
+import { ResponsiveImage } from "@/src/components/ui/ResponsiveImage";
 import { AgencyFooter } from "@/src/components/layout/AgencyFooter";
 import type { HubPageConfig } from "@/src/features/services/types";
 import { ServicePageHeader } from "./ServicePageHeader";
@@ -17,7 +18,10 @@ export function ServiceHubView({ config }: { config: HubPageConfig }) {
     <div className="ds-services-page">
       <ServicePageHeader backHref="/" backLabel="Back to Home" />
 
-      <section className="ds-service-hub-hero" style={{ backgroundImage: `url(${heroImage})` }}>
+      <section className="ds-service-hub-hero">
+        <div className="ds-service-hero-media" aria-hidden="true">
+          <ResponsiveImage source={heroImage} widths={[480, 768, 1280]} sizes="100vw" alt="" loading="eager" fetchPriority="high" decoding="sync" />
+        </div>
         <div className="ds-service-hub-hero-inner">
           <span className="ds-service-kicker">{eyebrow}</span>
           <h1>{heading}</h1>

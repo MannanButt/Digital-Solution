@@ -17,6 +17,7 @@ import {
 import { Brand } from "@/src/components/brand/Brand";
 import { BrandBar } from "@/src/components/brand/BrandBar";
 import { AgencyFooter } from "@/src/components/layout/AgencyFooter";
+import { ResponsiveImage } from "@/src/components/ui/ResponsiveImage";
 import { clientReviews, heroImages } from "@/src/features/home/data/content";
 import { getServiceItemHref, serviceMenuGroups } from "@/src/features/services/data/services";
 
@@ -30,8 +31,8 @@ type SiteSearchItem = {
   featured?: boolean;
 };
 
-const serviceSearchItems: SiteSearchItem[] = serviceMenuGroups.flatMap((group, groupIndex) => [
-  {
+const serviceSearchItems: SiteSearchItem[] = serviceMenuGroups.reduce<SiteSearchItem[]>((items, group, groupIndex) => {
+  items.push({
     id: `group-${group.id}`,
     title: group.title,
     category: "Service area",
@@ -39,17 +40,20 @@ const serviceSearchItems: SiteSearchItem[] = serviceMenuGroups.flatMap((group, g
     href: "#services" as const,
     groupIndex,
     featured: groupIndex === 0,
-  },
-  ...group.services.map((service, serviceIndex) => ({
-    id: `${group.id}-${serviceIndex}`,
-    title: service,
-    category: group.title,
-    description: group.description,
-    href: "#services" as const,
-    groupIndex,
-    featured: (groupIndex === 0 && serviceIndex < 2) || (groupIndex > 0 && serviceIndex === 0),
-  })),
-]);
+  });
+  group.services.forEach((service, serviceIndex) => {
+    items.push({
+      id: `${group.id}-${serviceIndex}`,
+      title: service,
+      category: group.title,
+      description: group.description,
+      href: "#services" as const,
+      groupIndex,
+      featured: (groupIndex === 0 && serviceIndex < 2) || (groupIndex > 0 && serviceIndex === 0),
+    });
+  });
+  return items;
+}, []);
 
 const siteSearchItems: SiteSearchItem[] = [
   ...serviceSearchItems,
@@ -216,6 +220,7 @@ const softwareToolLogoTiles = [
 
 export default function HomePage() {
   const [activeHero, setActiveHero] = useState(0);
+  const [loadedHeroIndices, setLoadedHeroIndices] = useState<Set<number>>(() => new Set([0]));
   const [paused, setPaused] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [activeServiceGroup, setActiveServiceGroup] = useState(0);
@@ -271,13 +276,21 @@ export default function HomePage() {
   };
 
   const changeHero = (direction: number) => {
-    setActiveHero((current) => (current + direction + heroImages.length) % heroImages.length);
+    setActiveHero((current) => {
+      const next = (current + direction + heroImages.length) % heroImages.length;
+      setLoadedHeroIndices((indices) => indices.has(next) ? indices : new Set(indices).add(next));
+      return next;
+    });
   };
 
   useEffect(() => {
     if (paused || servicesOpen || searchOpen) return;
     const timer = window.setInterval(() => {
-      setActiveHero((current) => (current + 1) % heroImages.length);
+      setActiveHero((current) => {
+        const next = (current + 1) % heroImages.length;
+        setLoadedHeroIndices((indices) => indices.has(next) ? indices : new Set(indices).add(next));
+        return next;
+      });
     }, 6200);
     return () => window.clearInterval(timer);
   }, [paused, searchOpen, servicesOpen]);
@@ -307,6 +320,30 @@ export default function HomePage() {
 
   useEffect(() => () => {
     if (servicesCloseTimer.current !== null) window.clearTimeout(servicesCloseTimer.current);
+  }, []);
+
+  useEffect(() => {
+    const videos = Array.from(document.querySelectorAll<HTMLVideoElement>("video[data-video-src]"));
+    if (!videos.length || !("IntersectionObserver" in window)) return;
+
+    const loadVideo = (video: HTMLVideoElement) => {
+      const source = video.querySelector<HTMLSourceElement>("source[data-video-src]");
+      const sourceUrl = source?.dataset.videoSrc;
+      if (!source || !sourceUrl || source.src) return;
+      source.src = sourceUrl;
+      video.load();
+    };
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          loadVideo(entry.target as HTMLVideoElement);
+          observer.unobserve(entry.target);
+        }
+      }),
+      { rootMargin: "480px 0px" },
+    );
+    videos.forEach((video) => observer.observe(video));
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -401,17 +438,21 @@ export default function HomePage() {
           }}
         >
           <div className="vx-hero-media">
-            {heroImages.map((image, index) => (
+            {heroImages.map((image, index) => loadedHeroIndices.has(index) && (
               <div
                 className={`vx-hero-slide${index === activeHero ? " is-active" : ""}`}
                 aria-hidden={index !== activeHero}
                 key={image.src}
               >
-                <img
-                  src={image.src}
+                <ResponsiveImage
+                  source={image.src}
+                  widths={[768, 1280, 1920]}
+                  sizes="100vw"
                   alt={index === activeHero ? image.alt : ""}
                   style={{ objectPosition: image.position }}
                   loading={index === 0 ? "eager" : "lazy"}
+                  fetchPriority={index === 0 ? "high" : "low"}
+                  decoding={index === 0 ? "sync" : "async"}
                 />
               </div>
             ))}
@@ -429,7 +470,7 @@ export default function HomePage() {
               if (!event.currentTarget.contains(event.relatedTarget)) setServicesOpen(false);
             }}
           >
-            <a href="#top" aria-label="Digital Solutions home">
+            <a href="#top">
               <Brand />
             </a>
             <div className="vx-header-center">
@@ -619,11 +660,15 @@ export default function HomePage() {
                 >
                   <div className="vx-mega-preview-images" aria-hidden="true">
                     {serviceMenuGroups.map((group, index) => (
-                      <img
+                      <ResponsiveImage
+                        source={group.image}
+                        widths={[480, 768, 1280]}
+                        sizes="(max-width: 900px) 100vw, 34vw"
                         className={index === activeMenuGroupIndex ? "is-active" : ""}
-                        src={group.image}
                         alt=""
                         style={{ objectPosition: group.imagePosition }}
+                        loading="lazy"
+                        decoding="async"
                         key={group.id}
                       />
                     ))}
@@ -699,7 +744,10 @@ export default function HomePage() {
                   <button
                     type="button"
                     className={index === activeHero ? "is-active" : ""}
-                    onClick={() => setActiveHero(index)}
+                    onClick={() => {
+                      setLoadedHeroIndices((indices) => indices.has(index) ? indices : new Set(indices).add(index));
+                      setActiveHero(index);
+                    }}
                     aria-label={`Show hero image ${index + 1}`}
                     aria-current={index === activeHero ? "true" : undefined}
                     key={image.src}
@@ -718,7 +766,7 @@ export default function HomePage() {
             {/* Timeline Process Stepper Header */}
             <div className="vx-process-stepper-wrap">
               <div className="vx-process-top-controls">
-                <span className="vx-process-eyebrow" id="why-title">WHY DIGITAL SOLUTIONS</span>
+                <span className="vx-process-eyebrow" id="why-title" role="heading" aria-level={2}>WHY DIGITAL SOLUTIONS</span>
               </div>
 
               <div className="vx-process-timeline-bar" aria-hidden="true">
@@ -823,7 +871,7 @@ export default function HomePage() {
                   <div className="vx-reviews-page-grid">
                     {clientReviews.slice(0, 3).map((review) => (
                       <blockquote className="vx-review-card-sky" key={review.name}>
-                        <div className="vx-review-stars" aria-label="5 out of 5 stars">
+                        <div className="vx-review-stars" role="img" aria-label="5 out of 5 stars">
                           {Array.from({ length: 5 }, (_, starIndex) => (
                             <Star key={starIndex} size={14} fill="currentColor" aria-hidden="true" />
                           ))}
@@ -846,7 +894,7 @@ export default function HomePage() {
                   <div className="vx-reviews-page-grid">
                     {clientReviews.slice(3, 6).map((review) => (
                       <blockquote className="vx-review-card-sky" key={review.name}>
-                        <div className="vx-review-stars" aria-label="5 out of 5 stars">
+                        <div className="vx-review-stars" role="img" aria-label="5 out of 5 stars">
                           {Array.from({ length: 5 }, (_, starIndex) => (
                             <Star key={starIndex} size={14} fill="currentColor" aria-hidden="true" />
                           ))}
@@ -929,7 +977,15 @@ export default function HomePage() {
                       </div>
                     ) : (
                       <div className="vx-service-card-image">
-                        <img src={group.image} alt={group.title} style={{ objectPosition: group.imagePosition }} />
+                        <ResponsiveImage
+                          source={group.image}
+                          widths={[480, 768, 1280]}
+                          sizes="(max-width: 700px) 100vw, 25vw"
+                          alt={group.title}
+                          style={{ objectPosition: group.imagePosition }}
+                          loading="lazy"
+                          decoding="async"
+                        />
                       </div>
                     )}
                     <span className="vx-service-card-eyebrow">{group.eyebrow}</span>
@@ -970,15 +1026,29 @@ export default function HomePage() {
                 <article className="vx-project-card" style={{ animationDelay: `${index * 110}ms` }} key={project.id}>
                   <div className="vx-project-cover">
                     {"video" in project ? (
-                      <video autoPlay loop muted playsInline preload="metadata" aria-hidden="true">
-                        <source src={project.video} type="video/mp4" />
+                      <video autoPlay loop muted playsInline preload="none" aria-hidden="true" data-video-src={project.video}>
+                        <source data-video-src={project.video} type="video/mp4" />
                       </video>
                     ) : (
-                      <img src={project.image} alt={project.title} />
+                      <ResponsiveImage
+                        source={project.image}
+                        widths={[480, 768, 1280]}
+                        sizes="(max-width: 700px) 100vw, 33vw"
+                        alt={project.title}
+                        loading="lazy"
+                        decoding="async"
+                      />
                     )}
                     <span className="vx-project-badge">{project.category}</span>
                     <div className="vx-project-brand">
-                      <img src={project.logo} alt={`${project.title} logo`} />
+                      <ResponsiveImage
+                        source={project.logo}
+                        widths={[480, 768]}
+                        sizes="96px"
+                        alt={`${project.title} logo`}
+                        loading="lazy"
+                        decoding="async"
+                      />
                       <span>{project.title.toUpperCase()}</span>
                     </div>
                   </div>

@@ -10,6 +10,7 @@ import type { FAQItem, ServiceDetail } from "@/src/features/services/types";
 import { ServiceDeliverables, ServiceTimeline } from "./ServiceContent";
 import { ServicePageHeader } from "./ServicePageHeader";
 import { AgencyFooter } from "@/src/components/layout/AgencyFooter";
+import { ResponsiveImage } from "@/src/components/ui/ResponsiveImage";
 
 function formatMetric(metric: { value: string; label: string }) {
   if (metric.value.toLowerCase().includes("faster")) {
@@ -105,7 +106,10 @@ export function ServiceDetailView({ detail, heroImage = "/assets/images/home/her
     <div className="ds-services-page">
       <ServicePageHeader backHref="/#services" backLabel="Back to Services" />
 
-      <section className="ds-service-detail-hero" data-service-reveal style={{ backgroundImage: `url(${heroImage})` }}>
+      <section className="ds-service-detail-hero" data-service-reveal>
+        <div className="ds-service-hero-media" aria-hidden="true">
+          <ResponsiveImage source={heroImage} widths={[480, 768, 1280]} sizes="100vw" alt="" loading="eager" fetchPriority="high" decoding="sync" />
+        </div>
         <div className="ds-service-detail-hero-inner">
           <span className="ds-service-kicker">{detail.eyebrow || "Digital Solutions service"}</span>
           <h1>{detail.title}</h1>
