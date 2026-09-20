@@ -165,6 +165,19 @@ const processSteps = [
 
 const featuredProjects = [
   {
+    id: "teg-carpet-steam-cleaning",
+    title: "T.E.G Carpet Steam Cleaning",
+    category: "LOCAL SERVICES · REDESIGN",
+    client: "Milwaukee, Wisconsin",
+    description: "A conversion-focused website redesign for a professional carpet, furniture, tile, and steam cleaning company—making service discovery and lead capture feel effortless.",
+    video: "https://teg-carpet-steam-cleaning-production.up.railway.app/media/hero.mp4",
+    logo: "https://teg-carpet-steam-cleaning-production.up.railway.app/favicon.svg",
+    stats: "Live redesign · 12 service areas",
+    tags: ["Web Redesign", "Local SEO", "Lead Generation"],
+    accent: "#0f766e",
+    href: "https://teg-carpet-steam-cleaning-production.up.railway.app/",
+  },
+  {
     id: "alooverse",
     title: "Alooverse",
     category: "FOOD & HOSPITALITY",
@@ -958,18 +971,24 @@ export default function HomePage() {
             <div className="vx-projects-heading">
               <span>FEATURED CASE STUDIES</span>
               <h2 id="projects-title">OUR PROJECTS</h2>
-              <p>A live hospitality brand experience designed to make its menu, personality, and ordering journey unmistakable.</p>
+              <p>Selected live experiences built to make brands clearer, services easier to explore, and the next customer action feel natural.</p>
             </div>
 
             <div className="vx-projects-grid">
               {featuredProjects.map((project, index) => (
                 <article className="vx-project-card" style={{ animationDelay: `${index * 110}ms` }} key={project.id}>
                   <div className="vx-project-cover">
-                    <img src={project.image} alt={project.title} />
+                    {"video" in project ? (
+                      <video autoPlay loop muted playsInline preload="metadata" aria-hidden="true">
+                        <source src={project.video} type="video/mp4" />
+                      </video>
+                    ) : (
+                      <img src={project.image} alt={project.title} />
+                    )}
                     <span className="vx-project-badge">{project.category}</span>
                     <div className="vx-project-brand">
-                      <img src={project.logo} alt="Alooverse mascot" />
-                      <span>ALOOVERSE</span>
+                      <img src={project.logo} alt={`${project.title} logo`} />
+                      <span>{project.title.toUpperCase()}</span>
                     </div>
                   </div>
                   <div className="vx-project-body">
