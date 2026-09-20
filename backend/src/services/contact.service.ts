@@ -20,17 +20,38 @@ export class DefaultContactService implements ContactService {
   ) {}
 
   async submit(payload: ContactRequest): Promise<ContactSubmissionResult> {
-    const record = await this.repository.create(payload);
+    let record: DemoRequest | undefined;
+    try {
+      record = await this.repository.create(payload);
+    } catch (dbError) {
+      logger.error("Contact DB save failed", { error: dbError });
+    }
 
+    let notificationSent = false;
     try {
       await this.notifications.sendContactNotification(payload);
-      return { record, notificationSent: true };
-    } catch (error) {
-      logger.error("Contact notification email failed after persistence", {
-        error,
-        contactRequestId: record.id,
-      });
-      return { record, notificationSent: false };
+      notificationSent = true;
+    } catch (emailError) {
+      logger.error("Contact notification email failed", { error: emailError });
     }
+
+    if (!record && !notificationSent) {
+      throw new Error("Unable to process contact request at this time. Please try again.");
+    }
+
+    return {
+      record: record ?? ({
+        id: 0,
+        name: payload.name,
+        email: payload.email,
+        phone: payload.phone,
+        company: payload.company,
+        service: payload.service,
+        subService: payload.subService,
+        message: payload.message,
+        createdAt: new Date(),
+      } as DemoRequest),
+      notificationSent,
+    };
   }
 }
