@@ -139,6 +139,16 @@
   opacity: .58;
 }
 
+.ds-phone-input-group {
+  display: flex;
+  gap: 8px;
+}
+
+.ds-phone-country-select {
+  width: 124px !important;
+  flex-shrink: 0;
+}
+
 .ds-booking-form input,
 .ds-booking-form select,
 .ds-booking-form textarea {

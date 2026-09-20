@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUpRight, ChevronLeft, Home, Menu, X } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, Menu, X } from "lucide-react";
 import { Brand } from "@/src/components/brand/Brand";
 
 type ServicePageHeaderProps = {
@@ -26,7 +26,6 @@ export function ServicePageHeader({
           <a href={backHref} className="ds-service-header-back">
             <ChevronLeft size={15} /> {backLabel}
           </a>
-          <a href="/" aria-label="Home"><Home size={14} /> Home</a>
           <a href="/#services">Services</a>
         </nav>
 
@@ -49,7 +48,6 @@ export function ServicePageHeader({
       {menuOpen && (
         <nav aria-label="Mobile service page navigation" className="ds-service-mobile-nav">
           <a href={backHref} onClick={() => setMenuOpen(false)}>{backLabel}</a>
-          <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
           <a href="/#services" onClick={() => setMenuOpen(false)}>Services</a>
           <a href="/book-a-demo" onClick={() => setMenuOpen(false)}>Book a call</a>
         </nav>

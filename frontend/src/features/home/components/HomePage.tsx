@@ -580,6 +580,7 @@ export default function HomePage() {
               >
                 {searchOpen ? <X size={17} aria-hidden="true" /> : <Search size={17} aria-hidden="true" />}
               </button>
+              <a className="vx-mobile-tools-link" href="/services/software-tools" onClick={() => { setServicesOpen(false); closeSearch(); }}>🛠 Tools</a>
               <a href="/book-a-demo" onClick={() => { setServicesOpen(false); closeSearch(); }}>Book a Demo <ArrowUpRight size={14} aria-hidden="true" /></a>
               <button
                 className="vx-menu-toggle"
@@ -693,9 +694,6 @@ export default function HomePage() {
 
 
             <div className="vx-hero-controls" aria-label="Hero image controls">
-              <button type="button" onClick={() => changeHero(-1)} aria-label="Previous hero image">
-                <ChevronLeft size={18} aria-hidden="true" />
-              </button>
               <div className="vx-hero-dots">
                 {heroImages.map((image, index) => (
                   <button
@@ -708,9 +706,6 @@ export default function HomePage() {
                   />
                 ))}
               </div>
-              <button type="button" onClick={() => changeHero(1)} aria-label="Next hero image">
-                <ChevronRight size={18} aria-hidden="true" />
-              </button>
             </div>
           </div>
         </section>
@@ -802,24 +797,7 @@ export default function HomePage() {
                 ))}
               </div>
             </div>
-            <div className="vx-process-card-controls">
-              <button
-                type="button"
-                className="vx-process-nav-btn"
-                onClick={() => setActiveProcessStep((prev) => (prev - 1 + processSteps.length) % processSteps.length)}
-                aria-label="Previous process step"
-              >
-                <ChevronLeft size={18} aria-hidden="true" />
-              </button>
-              <button
-                type="button"
-                className="vx-process-nav-btn"
-                onClick={() => setActiveProcessStep((prev) => (prev + 1) % processSteps.length)}
-                aria-label="Next process step"
-              >
-                <ChevronRight size={18} aria-hidden="true" />
-              </button>
-            </div>
+
 
             {/* Client Reviews Section (3 Cards Per Row, 6 Total Reviews) */}
             <div 
