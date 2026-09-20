@@ -165,6 +165,19 @@ const processSteps = [
 
 const featuredProjects = [
   {
+    id: "dsquare-clinic",
+    title: "D Square Clinic",
+    category: "HEALTHCARE & CLINIC · WORDPRESS",
+    client: "Aesthetic & Skin Clinic",
+    description: "A modern, high-converting WordPress website for a premier aesthetic & skin clinic—featuring custom clinic design, treatment showcases, and patient inquiry workflows.",
+    image: "/assets/images/projects/dsquare-landing.jpg",
+    logo: "/assets/images/projects/dsquare-logo.jpg",
+    stats: "Live WordPress site · Custom Clinic Design",
+    tags: ["WordPress", "Healthcare & Clinic", "UI/UX Design"],
+    accent: "#0284c7",
+    href: "https://dsquareclinic.com/",
+  },
+  {
     id: "teg-carpet-steam-cleaning",
     title: "T.E.G Carpet Steam Cleaning",
     category: "LOCAL SERVICES · REDESIGN",
