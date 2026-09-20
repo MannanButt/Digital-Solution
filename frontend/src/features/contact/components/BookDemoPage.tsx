@@ -3,6 +3,7 @@
 import { FormEvent, useState } from "react";
 import { ServicePageHeader } from "@/src/features/services/components/ServicePageHeader";
 import { AgencyFooter } from "@/src/components/layout/AgencyFooter";
+import { ApiClientError, submitContactRequest } from "@/src/lib/api/contact";
 import "@/src/features/contact/styles/contact.css";
 
 const ADMIN_EMAIL = "dsolutions555@gmail.com";
@@ -110,31 +111,22 @@ export default function BookDemoPage() {
     setError("");
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: form.name.trim(),
-          email: form.email.trim(),
-          phone: form.phone.trim(),
-          company: form.company.trim(),
-          service: form.service,
-          subService: form.customService.trim() || form.subService,
-          message: form.message.trim(),
-        }),
+      await submitContactRequest({
+        name: form.name.trim(),
+        email: form.email.trim(),
+        phone: form.phone.trim(),
+        company: form.company.trim(),
+        service: form.service,
+        subService: form.customService.trim() || form.subService,
+        message: form.message.trim(),
       });
-
-      const result = await response.json() as { success: boolean; error?: string };
-
-      if (!response.ok || !result.success) {
-        setError(result.error ?? "Something went wrong. Please try again or email us directly.");
-        return;
-      }
 
       setSubmitted(true);
       setForm(initialForm);
-    } catch {
-      setError("Network error. Please check your connection and try again.");
+    } catch (submitError) {
+      setError(submitError instanceof ApiClientError
+        ? submitError.message
+        : "Something went wrong. Please try again or email us directly.");
     } finally {
       setLoading(false);
     }
