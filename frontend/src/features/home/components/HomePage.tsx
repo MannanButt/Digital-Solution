@@ -6,12 +6,15 @@ import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
+  Bot,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
   Menu,
   Search,
   Star,
+  SunMedium,
+  UserRound,
   X,
 } from "lucide-react";
 import { Brand } from "@/src/components/brand/Brand";
@@ -180,19 +183,28 @@ const featuredProjects = [
     tags: ["WordPress", "Healthcare & Clinic", "UI/UX Design"],
     accent: "#0284c7",
     href: "https://dsquareclinic.com/",
+    portfolioType: "web-development",
   },
   {
-    id: "teg-carpet-steam-cleaning",
-    title: "T.E.G Carpet Steam Cleaning",
-    category: "LOCAL SERVICES · REDESIGN",
+    id: "teg-carpet-furniture-cleaning-redesign",
+    title: "T.E.G Carpet & Furniture Cleaning",
+    category: "LOCAL SERVICES · WEBSITE REDESIGN",
     client: "Milwaukee, Wisconsin",
-    description: "A conversion-focused website redesign for a professional carpet, furniture, tile, and steam cleaning company—making service discovery and lead capture feel effortless.",
+    description: "A before-and-after redesign that turns a dated local-service website into a clearer, faster path to quote requests and service discovery.",
     video: "https://teg-carpet-steam-cleaning-production.up.railway.app/media/hero.mp4",
     logo: "https://teg-carpet-steam-cleaning-production.up.railway.app/favicon.svg",
-    stats: "Live redesign · 12 service areas",
-    tags: ["Web Redesign", "Local SEO", "Lead Generation"],
+    stats: "Live redesign · Clearer quote journey",
+    tags: ["Before / After", "Local SEO", "Lead Generation"],
     accent: "#0f766e",
-    href: "https://teg-carpet-steam-cleaning-production.up.railway.app/",
+    href: "https://tegcarpetfurniturecleaning.com/",
+    portfolioType: "website-redesign",
+    before: {
+      domain: "tegcarpetsteamcleaning.com",
+      href: "https://tegcarpetsteamcleaning.com/",
+      title: "Your Trusted Partner",
+      accentTitle: "Steam Cleaning!",
+      description: "A dated, generic service-first layout with limited hierarchy and a less direct conversion path.",
+    },
   },
   {
     id: "alooverse",
@@ -206,8 +218,39 @@ const featuredProjects = [
     tags: ["Brand Experience", "Digital Menu", "E-commerce"],
     accent: "#e88911",
     href: "https://alooverse.alooverse.workers.dev/",
+    portfolioType: "web-development",
   },
 ];
+
+const projectSections = [
+  {
+    id: "website-redesign",
+    index: "01",
+    label: "WEBSITE REDESIGN",
+    title: "Sharper first impressions.",
+    description: "Conversion-focused redesigns that make your offer easier to understand, trust, and act on.",
+    accent: "#0284c7",
+  },
+  {
+    id: "web-development",
+    index: "02",
+    label: "WEB DEVELOPMENT",
+    title: "Digital experiences built to move.",
+    description: "Fast, flexible websites and digital products engineered around your customers and your next stage of growth.",
+    accent: "#0f766e",
+  },
+  {
+    id: "seo-aeo-gmb",
+    index: "03",
+    label: "SEO / AEO / GMB RANKING",
+    title: "Visibility that compounds.",
+    description: "Search, answer-engine, and local profile growth systems that help the right customers find you at the right moment.",
+    accent: "#7c3aed",
+  },
+].map((section) => ({
+  ...section,
+  projects: featuredProjects.filter((project) => project.portfolioType === section.id),
+}));
 
 const softwareToolLogoTiles = [
   { name: "ChatGPT", src: "/assets/logos/tools/openai.svg", className: "is-openai" },
@@ -761,6 +804,52 @@ export default function HomePage() {
         {/* Agency Brand & Ecosystem Marquee Bar */}
         <div data-home-reveal className="vx-home-reveal"><BrandBar /></div>
 
+        <section
+          className="vx-philosophy"
+          id="philosophy"
+          aria-labelledby="philosophy-title"
+          data-home-reveal
+        >
+          <div className="vx-philosophy-grid" aria-hidden="true" />
+          <span className="vx-philosophy-orbit vx-philosophy-orbit--one" aria-hidden="true" />
+          <span className="vx-philosophy-orbit vx-philosophy-orbit--two" aria-hidden="true" />
+          <span className="vx-philosophy-particle vx-philosophy-particle--one" aria-hidden="true" />
+          <span className="vx-philosophy-particle vx-philosophy-particle--two" aria-hidden="true" />
+
+          <div className="vx-philosophy-content">
+            <p className="vx-philosophy-eyebrow"><span aria-hidden="true" /> OUR PHILOSOPHY</p>
+            <h2 id="philosophy-title">
+              <span>Human intelligence,</span>
+              <em>amplified by systems.</em>
+            </h2>
+
+            <div
+              className="vx-philosophy-equation"
+              role="img"
+              aria-label="Human intelligence plus digital intelligence equals amplified potential"
+            >
+              <div className="vx-philosophy-node">
+                <div className="vx-philosophy-card"><UserRound size={46} strokeWidth={1.35} aria-hidden="true" /></div>
+                <span>HUMAN<br />INTELLIGENCE</span>
+              </div>
+              <span className="vx-philosophy-operator" aria-hidden="true">+</span>
+              <div className="vx-philosophy-node">
+                <div className="vx-philosophy-card"><Bot size={46} strokeWidth={1.35} aria-hidden="true" /></div>
+                <span>DIGITAL<br />INTELLIGENCE</span>
+              </div>
+              <span className="vx-philosophy-operator" aria-hidden="true">=</span>
+              <div className="vx-philosophy-node is-result">
+                <div className="vx-philosophy-card"><SunMedium size={48} strokeWidth={1.35} aria-hidden="true" /></div>
+                <span>POTENTIAL<br />AMPLIFIED</span>
+              </div>
+            </div>
+
+            <p className="vx-philosophy-mission">
+              Our mission is not to replace the people behind the work. <strong>It&apos;s to help them move further.</strong>
+            </p>
+          </div>
+        </section>
+
         <section className="vx-process-section" id="why" aria-labelledby="why-title" data-home-reveal>
           <div className="vx-process-inner">
             {/* Timeline Process Stepper Header */}
@@ -1018,57 +1107,144 @@ export default function HomePage() {
             <div className="vx-projects-heading">
               <span>FEATURED CASE STUDIES</span>
               <h2 id="projects-title">OUR PROJECTS</h2>
-              <p>Selected live experiences built to make brands clearer, services easier to explore, and the next customer action feel natural.</p>
+              <p>Selected work, organized by the kind of growth system we build for your business.</p>
             </div>
 
-            <div className="vx-projects-grid">
-              {featuredProjects.map((project, index) => (
-                <article className="vx-project-card" style={{ animationDelay: `${index * 110}ms` }} key={project.id}>
-                  <div className="vx-project-cover">
-                    {"video" in project ? (
-                      <video autoPlay loop muted playsInline preload="none" aria-hidden="true" data-video-src={project.video}>
-                        <source data-video-src={project.video} type="video/mp4" />
-                      </video>
-                    ) : (
-                      <ResponsiveImage
-                        source={project.image}
-                        widths={[480, 768, 1280]}
-                        sizes="(max-width: 700px) 100vw, 33vw"
-                        alt={project.title}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    )}
-                    <span className="vx-project-badge">{project.category}</span>
-                    <div className="vx-project-brand">
-                      <ResponsiveImage
-                        source={project.logo}
-                        widths={[480, 768]}
-                        sizes="96px"
-                        alt={`${project.title} logo`}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                      <span>{project.title.toUpperCase()}</span>
+            <nav className="vx-projects-nav" aria-label="Project categories">
+              {projectSections.map((section) => (
+                <a href={`#projects-${section.id}`} key={section.id}>
+                  <span>{section.index}</span>{section.label}
+                </a>
+              ))}
+            </nav>
+
+            <div className="vx-project-categories">
+              {projectSections.map((section, sectionIndex) => (
+                <section
+                  className="vx-project-category"
+                  id={`projects-${section.id}`}
+                  aria-labelledby={`projects-${section.id}-title`}
+                  key={section.id}
+                >
+                  <div className="vx-project-category-heading">
+                    <div className="vx-project-category-kicker">
+                      <span style={{ color: section.accent }}>{section.index}</span>
+                      <span>{section.label}</span>
+                      <i aria-hidden="true" />
+                      <small>{section.projects.length ? `${section.projects.length} ${section.projects.length === 1 ? "project" : "projects"}` : "Projects incoming"}</small>
                     </div>
+                    <h3 id={`projects-${section.id}-title`}>{section.title}</h3>
+                    <p>{section.description}</p>
                   </div>
-                  <div className="vx-project-body">
-                    <span className="vx-project-client">{project.client}</span>
-                    <h3>{project.title}</h3>
-                    <p>{project.description}</p>
-                    <div className="vx-project-stat-pill">
-                      <strong style={{ color: project.accent }}>{project.stats}</strong>
-                    </div>
-                    <div className="vx-project-tags">
-                      {project.tags.map((tag) => (
-                        <span className="vx-project-tag" key={tag}>{tag}</span>
+
+                  {section.projects.length ? (
+                    <div className="vx-projects-grid">
+                      {section.projects.map((project, index) => (
+                        <article className="vx-project-card" style={{ animationDelay: `${index * 110 + sectionIndex * 120}ms` }} key={project.id}>
+                          <div className={`vx-project-cover${"before" in project ? " vx-project-cover--comparison" : ""}`}>
+                            {"before" in project && project.before ? (
+                              <div className="vx-project-before-after" aria-label="Before and after website redesign preview">
+                                <a
+                                  className="vx-project-before-pane"
+                                  href={project.before.href}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  aria-label="View the previous T.E.G website"
+                                >
+                                  <div className="vx-project-browser-bar">
+                                    <span className="vx-project-browser-dots" aria-hidden="true"><i /><i /><i /></span>
+                                    <small>{project.before.domain}</small>
+                                  </div>
+                                  <div className="vx-project-before-hero">
+                                    <span className="vx-project-before-logo">TEG</span>
+                                    <strong>{project.before.title}<em>{project.before.accentTitle}</em></strong>
+                                    <span>{project.before.description}</span>
+                                    <b>Call Now</b>
+                                  </div>
+                                  <span className="vx-project-compare-label">BEFORE · VIEW OLD SITE</span>
+                                </a>
+                                <a
+                                  className="vx-project-after-pane"
+                                  href={project.href}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  aria-label="View the redesigned T.E.G website"
+                                >
+                                  <video autoPlay loop muted playsInline preload="none" aria-hidden="true" data-video-src={project.video}>
+                                    <source data-video-src={project.video} type="video/mp4" />
+                                  </video>
+                                  <span className="vx-project-compare-label">AFTER · VIEW LIVE SITE</span>
+                                </a>
+                                <span className="vx-project-compare-arrow" aria-hidden="true">→</span>
+                              </div>
+                            ) : "video" in project ? (
+                              <video autoPlay loop muted playsInline preload="none" aria-hidden="true" data-video-src={project.video}>
+                                <source data-video-src={project.video} type="video/mp4" />
+                              </video>
+                            ) : (
+                              <ResponsiveImage
+                                source={project.image}
+                                widths={[480, 768, 1280]}
+                                sizes="(max-width: 700px) 100vw, 33vw"
+                                alt={project.title}
+                                loading="lazy"
+                                decoding="async"
+                              />
+                            )}
+                            <span className="vx-project-badge">{project.category}</span>
+                            <div className="vx-project-brand">
+                              <ResponsiveImage
+                                source={project.logo}
+                                widths={[480, 768]}
+                                sizes="96px"
+                                alt={`${project.title} logo`}
+                                loading="lazy"
+                                decoding="async"
+                              />
+                              <span>{project.title.toUpperCase()}</span>
+                            </div>
+                          </div>
+                          <div className="vx-project-body">
+                            <span className="vx-project-client">{project.client}</span>
+                            <h4>{project.title}</h4>
+                            <p>{project.description}</p>
+                            {"before" in project && project.before ? (
+                              <div className="vx-project-compare-details">
+                                <div>
+                                  <span>BEFORE</span>
+                                  <strong>Legacy service-first layout</strong>
+                                  <p>{project.before.description}</p>
+                                </div>
+                                <div>
+                                  <span>AFTER</span>
+                                  <strong>Conversion-ready redesign</strong>
+                                  <p>Clearer hierarchy, stronger trust cues, and a more direct quote journey.</p>
+                                </div>
+                              </div>
+                            ) : null}
+                            <div className="vx-project-stat-pill">
+                              <strong style={{ color: project.accent }}>{project.stats}</strong>
+                            </div>
+                            <div className="vx-project-tags">
+                              {project.tags.map((tag) => (
+                                <span className="vx-project-tag" key={tag}>{tag}</span>
+                              ))}
+                            </div>
+                            <a className="vx-project-link" href={project.href} target="_blank" rel="noreferrer">
+                              Visit live site <ArrowUpRight size={15} aria-hidden="true" />
+                            </a>
+                          </div>
+                        </article>
                       ))}
                     </div>
-                    <a className="vx-project-link" href={project.href} target="_blank" rel="noreferrer">
-                      Visit live site <ArrowUpRight size={15} aria-hidden="true" />
-                    </a>
-                  </div>
-                </article>
+                  ) : (
+                    <div className="vx-projects-empty">
+                      <span>CASE STUDIES INCOMING</span>
+                      <strong>This lane is ready for your next project.</strong>
+                      <p>Share the project details when you&apos;re ready and we&apos;ll add the case study here.</p>
+                    </div>
+                  )}
+                </section>
               ))}
             </div>
           </div>
